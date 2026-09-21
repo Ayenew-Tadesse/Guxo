@@ -1,0 +1,2030 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Guxo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EFF4EE;
+    --frame:#FFFFFF;
+    --surface:#FFFFFF;
+    --surface-alt:#E8F0E6;
+    --ink:#122420;
+    --ink-soft:#4E6459;
+    --ink-faint:#8AA298;
+    --primary:#0E6B5C;
+    --primary-2:#3FAE8E;
+    --primary-ink:#FFFFFF;
+    --accent:#E8A33D;
+    --accent-ink:#2A1B04;
+    --line:#DCE7DF;
+    --line-strong:#A9CEBE;
+    --good:#2E8B57;
+    --bad:#C24545;
+    --telebirr:#2FAE47;
+    --visa:#1A1F71;
+    --mc-red:#EB4141;
+    --mc-yellow:#F2A900;
+    --shadow:0 1px 2px rgba(18,36,32,.07), 0 16px 32px rgba(18,36,32,.14);
+    --radius:20px;
+    --maxw:760px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B1C17; --frame:#0F241D; --surface:#153229; --surface-alt:#1C4033;
+      --ink:#E9F5EE; --ink-soft:#A6C7B7; --ink-faint:#729082;
+      --primary:#3FAE8E; --primary-2:#7FD9BC; --primary-ink:#08211B;
+      --accent:#F2B75B; --accent-ink:#2A1B04;
+      --line:#25493C; --line-strong:#356653;
+      --good:#4FBE9E; --bad:#E37272; --telebirr:#4FCB68;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 34px rgba(0,0,0,.45);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B1C17; --frame:#0F241D; --surface:#153229; --surface-alt:#1C4033;
+    --ink:#E9F5EE; --ink-soft:#A6C7B7; --ink-faint:#729082;
+    --primary:#3FAE8E; --primary-2:#7FD9BC; --primary-ink:#08211B;
+    --accent:#F2B75B; --accent-ink:#2A1B04;
+    --line:#25493C; --line-strong:#356653;
+    --good:#4FBE9E; --bad:#E37272; --telebirr:#4FCB68;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 18px 34px rgba(0,0,0,.45);
+  }
+
+  *{box-sizing:border-box;}
+  [hidden]{display:none !important;}
+  html{background:var(--bg); font-size:100%;}
+  body{background:var(--bg); color:var(--ink); font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif; padding-inline:0;}
+  h1,h2,h3{font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif; line-height:1.14; text-wrap:balance; margin:0; letter-spacing:-.01em;}
+  p{margin:0;}
+  button{font-family:inherit;}
+  .mono{font-family:'Plus Jakarta Sans',ui-sans-serif,system-ui,sans-serif;}
+  svg{display:block;}
+
+  .stage{min-height:100dvh;}
+  .phone{
+    width:100%; max-width:var(--maxw); margin-inline:auto; background:var(--frame);
+    min-height:100dvh; position:relative;
+  }
+
+  .app-inner{position:relative; padding-bottom:84px;}
+
+  /* TOPBAR */
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:16px 18px; position:relative; z-index:5;
+  }
+  .topbar.on-hero{position:absolute; top:0; left:0; right:0; color:#fff;}
+  .tb-left{display:flex; align-items:center; gap:10px; min-width:0;}
+  .logo-mark{
+    width:30px;height:30px;border-radius:9px; flex-shrink:0;
+    background:linear-gradient(135deg, var(--primary), var(--primary-2));
+    display:flex;align-items:center;justify-content:center; color:#fff;
+  }
+  .logo-word{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.0625rem; color:var(--ink);}
+  .topbar.on-hero .logo-word{color:#fff;}
+  .btn-back{
+    width:34px;height:34px;border-radius:50%; border:1px solid var(--line); background:var(--surface);
+    display:flex;align-items:center;justify-content:center; color:var(--ink); cursor:pointer; flex-shrink:0;
+  }
+  .tb-title{font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1.0625rem; color:var(--ink);}
+  .tb-right{display:flex; align-items:center; gap:10px; flex-shrink:0;}
+  .icon-btn{
+    width:34px;height:34px;border-radius:50%; display:flex;align-items:center;justify-content:center;
+    color:var(--ink-soft); background:var(--surface-alt); border:1px solid var(--line); position:relative; flex-shrink:0;
+    cursor:pointer;
+  }
+  .topbar.on-hero .icon-btn{background:rgba(255,255,255,.18); border-color:rgba(255,255,255,.3); color:#fff;}
+  .icon-btn .dot{position:absolute; top:6px; right:7px; width:6px;height:6px;border-radius:50%; background:var(--primary-2); border:1.5px solid var(--frame);}
+
+  /* SCREENS */
+  .screen[hidden]{display:none;}
+  .scroll{padding:0 18px 18px; overflow:visible;}
+  @keyframes screenIn{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .screen:not([hidden]){ animation:screenIn .38s cubic-bezier(.22,.61,.36,1); }
+
+  /* PAGE LOADER (shown briefly on every screen transition) */
+  .page-loader{
+    position:fixed; left:50%; transform:translateX(-50%); top:0; bottom:0; width:100%; max-width:var(--maxw);
+    z-index:200; display:flex; align-items:center; justify-content:center;
+    background:color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter:blur(2px); -webkit-backdrop-filter:blur(2px);
+    animation:loaderIn .15s ease;
+  }
+  .page-loader[hidden]{display:none;}
+  @keyframes loaderIn{ from{ opacity:0; } to{ opacity:1; } }
+  .spinner{
+    width:34px; height:34px; border-radius:50%;
+    border:3px solid var(--line-strong); border-top-color:var(--primary);
+    animation:spin .7s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){
+    .screen:not([hidden]){ animation:none; }
+    .page-loader{ animation:none; }
+    .splash-logo-mark, .splash-word{ animation:none; }
+  }
+
+  /* SPLASH */
+  .splash-wrap{
+    min-height:100dvh; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    background:linear-gradient(135deg, var(--primary), var(--primary-2)); color:#fff;
+  }
+  .splash-logo-mark{
+    width:64px; height:64px; border-radius:18px; background:rgba(255,255,255,.18);
+    display:flex; align-items:center; justify-content:center; color:#fff;
+    animation:splashPop .5s cubic-bezier(.22,.61,.36,1);
+  }
+  .splash-word{
+    font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.5rem; letter-spacing:-.01em;
+    animation:splashFadeUp .5s .1s both;
+  }
+  .splash-spinner{
+    width:26px; height:26px; border-radius:50%; margin-top:8px;
+    border:3px solid rgba(255,255,255,.3); border-top-color:#fff;
+    animation:spin .7s linear infinite;
+  }
+  @keyframes splashPop{ from{ opacity:0; transform:scale(.7); } to{ opacity:1; transform:scale(1); } }
+  @keyframes splashFadeUp{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:translateY(0); } }
+
+  /* AUTH (SIGN UP / LOG IN) */
+  .auth-wrap{
+    min-height:100dvh; display:flex; flex-direction:column; justify-content:center;
+    max-width:380px; margin-inline:auto; width:100%; padding:32px 18px;
+  }
+  .auth-logo{display:flex; align-items:center; gap:8px; justify-content:center; margin-bottom:28px;}
+  .auth-title{font-size:1.5rem; text-align:center;}
+  .auth-sub{font-size:0.8438rem; color:var(--ink-faint); text-align:center; margin:6px 0 26px;}
+  .auth-form{display:flex; flex-direction:column; gap:12px;}
+  .auth-form .btn{margin-top:6px;}
+  .auth-switch{text-align:center; font-size:0.8125rem; color:var(--ink-soft); margin-top:18px;}
+  .auth-switch a{color:var(--primary); font-weight:700; text-decoration:none; cursor:pointer;}
+  .pw-meter{margin-top:7px;}
+  .pw-meter-bar{display:flex; gap:4px; height:5px;}
+  .pw-meter-bar span{flex:1; border-radius:3px; background:var(--line); transition:background .15s;}
+  .pw-meter-bar span.weak{background:var(--bad);}
+  .pw-meter-bar span.medium{background:var(--mc-yellow);}
+  .pw-meter-bar span.strong{background:var(--good);}
+  .pw-meter-label{font-size:0.6875rem; font-weight:700; margin-top:5px; min-height:1em;}
+  .pw-meter-label.weak{color:var(--bad);}
+  .pw-meter-label.medium{color:color-mix(in srgb, var(--mc-yellow) 55%, var(--ink));}
+  .pw-meter-label.strong{color:var(--good);}
+
+  /* HOME HERO */
+  .hero{
+    height:50vh; height:50dvh; position:relative; overflow:hidden;
+    background:#B8BEC9; border-radius:0 0 40px 40px;
+  }
+  .hero-scene{position:absolute; inset:0; width:100%; height:100%; display:block;}
+  .hero::after{
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(9,21,64,.15) 0%, rgba(9,21,64,.1) 40%, rgba(9,21,64,.55) 100%);
+    pointer-events:none;
+  }
+  .hero-copy{position:absolute; left:18px; right:18px; top:100px; color:#fff; z-index:1; cursor:pointer; -webkit-tap-highlight-color:transparent;}
+  .hero-copy .hi{
+    font-size:1rem; font-weight:500; font-family:'Plus Jakarta Sans',sans-serif; display:inline-flex; align-items:center; gap:6px;
+    transition:opacity .15s; opacity:.9;
+  }
+  .hero-copy:hover .hi, .hero-copy:focus-visible .hi{opacity:.7;}
+  .hero-copy .hi::after{
+    content:'›'; font-size:0.9375rem; font-weight:600; opacity:.8; transform:translateY(-1px);
+  }
+  .hero-copy h1{font-size:2rem; font-weight:800; color:#fff; margin-top:2px; max-width:15ch;}
+
+  .search-card{
+    background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow);
+    border:1px solid var(--line); padding:18px; position:relative; z-index:4;
+    margin-top:calc(212px - 50vh); margin-top:calc(212px - 50dvh);
+  }
+  .search-card.compact{margin-top:14px; box-shadow:none; border-style:dashed;}
+  .trip-toggle{
+    display:flex; gap:4px; margin-bottom:16px; background:var(--surface-alt); border:1px solid var(--line);
+    border-radius:13px; padding:4px;
+  }
+  .trip-seg-btn{
+    flex:1; border:none; background:transparent; border-radius:10px; padding:10px 8px;
+    font-family:inherit; font-size:0.8125rem; font-weight:700; color:var(--ink-soft); cursor:pointer;
+    transition:background .15s, color .15s, box-shadow .15s;
+  }
+  .trip-seg-btn.active{background:var(--surface); color:var(--primary); box-shadow:0 1px 2px rgba(9,21,64,.08), 0 2px 6px rgba(9,21,64,.06);}
+  .field{display:flex; flex-direction:column; gap:5px; margin-bottom:12px;}
+  .field label{font-size:0.6875rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); font-weight:700;}
+  .input-icon{position:relative;}
+  .input-icon svg{position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--primary); width:16px;height:16px;}
+  select, input[type=date], input[type=text], input[type=password]{
+    font-family:'Plus Jakarta Sans',sans-serif; font-size:0.9062rem; color:var(--ink); width:100%;
+    background:var(--surface-alt); border:1px solid var(--line); border-radius:13px; padding:12px 12px 12px 36px;
+    appearance:none;
+    box-sizing:border-box;
+  }
+  .input-icon.no-ic select, .input-icon.no-ic input{padding-left:12px;}
+  select:focus, input:focus{outline:2px solid var(--primary); outline-offset:1px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .pax-stepper{display:flex; align-items:center; justify-content:space-between; background:var(--surface-alt); border:1px solid var(--line); border-radius:13px; padding:10px 12px;}
+  .pax-btn{width:24px;height:24px;border-radius:50%; border:1px solid var(--line-strong); background:var(--surface); color:var(--ink); font-size:0.875rem;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:14px; padding:13px 18px; font-size:0.9062rem; font-weight:700; border:1px solid transparent; cursor:pointer;}
+  .btn-primary{background:linear-gradient(135deg, var(--primary), var(--primary-2)); color:var(--primary-ink);}
+  .btn-primary:disabled{opacity:.4; cursor:not-allowed;}
+  .btn-ghost{background:var(--surface-alt); border-color:var(--line); color:var(--ink);}
+  .btn-danger{background:color-mix(in srgb, var(--bad) 12%, var(--surface)); color:var(--bad); border-color:color-mix(in srgb, var(--bad) 35%, var(--line));}
+  .btn-tint{background:color-mix(in srgb, var(--primary) 12%, var(--surface)); color:var(--primary); border-color:color-mix(in srgb, var(--primary) 30%, var(--line));}
+  .btn-sm{padding:10px 14px; font-size:0.8125rem;}
+  .btn svg{flex-shrink:0; transition:transform .2s ease;}
+  .btn:hover svg{transform:scale(1.12);}
+  .btn:active svg{transform:scale(.95);}
+  .rebook-btn:hover svg{transform:rotate(140deg);}
+  .cancel-trip-btn:hover svg{transform:rotate(90deg);}
+  .btn-block{width:100%;}
+  .search-submit{margin-top:20px;}
+  .form-error{color:var(--bad); font-size:0.7812rem; font-weight:600; margin-top:8px;}
+
+  /* generic section titles */
+  .sec-title{font-size:0.8125rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); margin:20px 0 10px;}
+
+  /* RESULTS */
+  .filter-row{display:flex; flex-wrap:wrap; gap:12px; padding:14px 0 4px;}
+  .filter-field{flex:1 1 150px; min-width:0; display:flex; flex-direction:column; gap:5px;}
+  .filter-field > label{font-size:0.6875rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); font-weight:700;}
+  .price-slider{margin:10px 0 4px;}
+  input[type=range]{width:100%; accent-color:var(--primary);}
+  .price-cap{font-size:0.75rem; color:var(--ink-faint);}
+  .select-wrap{position:relative; display:block; width:100%;}
+  .select-wrap::after{
+    content:''; position:absolute; right:12px; top:50%; width:7px; height:7px;
+    border-right:2px solid var(--ink-soft); border-bottom:2px solid var(--ink-soft);
+    transform:translateY(-65%) rotate(45deg); pointer-events:none;
+  }
+  select.sort-select{
+    width:100%; padding:11px 32px 11px 14px; border-radius:11px; font-size:0.8125rem; font-weight:700;
+    background:var(--surface-alt); border:1px solid var(--line); color:var(--ink); appearance:none; cursor:pointer;
+  }
+  @media (min-width:600px){
+    .filter-field{flex:0 1 220px;}
+  }
+
+  .bus-list{display:flex; flex-direction:column; gap:12px; margin-top:12px;}
+  .bus-card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:14px; box-shadow:var(--shadow);}
+  .fc-top{display:flex; align-items:center; gap:10px; margin-bottom:10px;}
+  .operator-mark{width:26px;height:26px;border-radius:50%; background:linear-gradient(135deg, var(--primary), var(--primary-2)); border:1px solid var(--line); box-shadow:0 1px 2px rgba(18,36,32,.08); color:#fff; display:flex;align-items:center;justify-content:center; flex-shrink:0; overflow:hidden; padding:5px;}
+  .operator-mark svg{width:100%; height:100%;}
+  .fc-top span{font-size:0.7812rem; color:var(--ink-soft); font-weight:600;}
+  .route-line{display:flex; align-items:center; gap:8px;}
+  .rl-time{font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:0.9375rem; text-align:center;}
+  .rl-mid{flex:1; display:flex; flex-direction:column; align-items:center; gap:2px;}
+  .rl-dur{font-size:0.6562rem; color:var(--ink-faint); font-weight:600;}
+  .rl-dots{display:flex; align-items:center; gap:4px; width:100%;}
+  .dot{width:8px;height:8px;border-radius:50%; flex-shrink:0;}
+  .dot-a{background:linear-gradient(135deg,#091540,var(--primary));}
+  .dot-b{background:linear-gradient(135deg,var(--primary-2),#ABD2FA);}
+  .rl-track{flex:1; height:0; border-top:1.6px dashed var(--line-strong); position:relative;}
+  .rl-track svg{position:absolute; left:50%; top:50%; transform:translate(-50%,-55%); width:13px; color:var(--ink-faint);}
+  .fc-bottom{display:flex; align-items:flex-end; justify-content:space-between; margin-top:10px;}
+  .fc-sub{font-size:0.7188rem; color:var(--ink-faint);}
+  .results-info-card{background:color-mix(in srgb, var(--good) 14%, var(--surface)); border:1px solid color-mix(in srgb, var(--good) 40%, var(--line)); border-radius:14px; padding:12px 14px; margin-top:12px;}
+  .results-info-card .fc-sub{color:var(--ink-soft); font-weight:600;}
+  .fc-price{display:flex; flex-direction:column; align-items:flex-end; gap:1px;}
+  .price-num{font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1rem; color:var(--primary);}
+  .fc-tax{font-size:0.625rem; color:var(--ink-faint);}
+  .no-results{color:var(--ink-faint); text-align:center; padding-block:34px; font-size:0.8438rem;}
+  .trend-note{font-size:0.7188rem; color:var(--ink-faint); margin-top:4px;}
+  .leg-banner{
+    display:flex; align-items:center; gap:10px; background:linear-gradient(135deg, var(--primary), var(--primary-2));
+    color:#fff; border-radius:14px; padding:11px 14px; margin-bottom:12px;
+  }
+  .leg-banner .leg-step{
+    flex-shrink:0; width:24px;height:24px;border-radius:50%; background:rgba(255,255,255,.25);
+    display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:800; font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .leg-banner .leg-copy{min-width:0;}
+  .leg-banner .leg-title{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:0.9375rem;}
+  .leg-banner .leg-sub{font-size:0.7188rem; opacity:.85; margin-top:1px;}
+  .date-strip{display:flex; gap:8px; margin-top:12px;}
+  .date-chip{flex:1; border:1px solid var(--line); border-radius:12px; padding:8px 6px; text-align:center; background:var(--surface); cursor:pointer;}
+  .date-chip.now{border-color:var(--primary); background:color-mix(in srgb, var(--primary) 8%, var(--surface));}
+  .date-chip.disabled{opacity:.45; cursor:not-allowed; background:var(--surface-alt);}
+  .date-chip.disabled.now{border-color:var(--line);}
+  .date-chip .d{font-size:0.6562rem; color:var(--ink-faint); font-weight:600;}
+  .date-chip .p{font-family:'Plus Jakarta Sans',sans-serif; font-size:0.7812rem; font-weight:700; color:var(--ink); margin-top:2px;}
+  .ribbon{display:inline-block; font-size:0.5938rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:3px 8px; border-radius:999px; margin-bottom:6px;}
+  .ribbon.cheap{background:color-mix(in srgb, var(--good) 18%, transparent); color:var(--good);}
+  .ribbon.fast{background:color-mix(in srgb, var(--primary) 16%, transparent); color:var(--primary);}
+
+  /* FARE & SEATS */
+  .summary-strip{
+    background:linear-gradient(135deg, var(--primary), var(--primary-2)); color:#fff; border-radius:18px;
+    padding:22px 20px; margin:16px 0; display:flex; flex-direction:column; gap:16px; min-height:118px; justify-content:center;
+  }
+  .summary-strip .strip-row{display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+  .summary-strip .r{font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1rem;}
+  .summary-strip span{opacity:.8; font-size:0.75rem; display:block; margin-top:4px;}
+  .strip-badge{
+    align-self:flex-start; font-size:0.6562rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    background:rgba(255,255,255,.22); padding:4px 11px; border-radius:999px;
+  }
+  .fare-grid{display:flex; flex-direction:column; gap:10px;}
+  .fare-card{
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+    border:1.5px solid var(--line); border-radius:14px; padding:14px 16px; cursor:pointer; background:var(--surface);
+    transition:border-color .15s, background .15s;
+  }
+  .fare-card.selected{border-color:var(--primary); background:color-mix(in srgb, var(--primary) 7%, var(--surface));}
+  .fare-card-main{min-width:0;}
+  .fare-card h4{font-size:0.9375rem; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:6px;}
+  .fare-badge{font-size:0.5938rem; font-weight:800; letter-spacing:.03em; text-transform:uppercase; color:var(--accent-ink); background:var(--accent); border-radius:20px; padding:2px 7px;}
+  .fare-card .desc{font-size:0.75rem; color:var(--ink-faint); margin-top:3px;}
+  .fare-card-right{display:flex; align-items:center; gap:12px; flex-shrink:0;}
+  .fare-card .price-block{text-align:right;}
+  .fare-card .p{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:0.9375rem; color:var(--ink);}
+  .fare-card .miles{font-size:0.6562rem; color:var(--primary); font-weight:700; display:block; margin-top:2px;}
+  .fare-radio{width:20px;height:20px;border-radius:50%; border:2px solid var(--line-strong); flex-shrink:0; position:relative;}
+  .fare-card.selected .fare-radio{border-color:var(--primary);}
+  .fare-card.selected .fare-radio::after{content:''; position:absolute; inset:3px; border-radius:50%; background:var(--primary);}
+  .policy-note{
+    background:var(--surface-alt); border:1px solid var(--line); border-radius:14px; padding:12px 14px 12px 30px;
+    margin-top:12px; font-size:0.75rem; color:var(--ink-soft); list-style:disc;
+  }
+  .policy-note li{padding-left:2px;}
+  .policy-note li + li{margin-top:6px;}
+  .fam-note{font-size:0.75rem; color:var(--ink-faint); margin:2px 0 4px;}
+  .pax-form{display:flex; flex-direction:column; gap:10px; margin-top:12px;}
+  .seat-map{display:flex; flex-direction:column; gap:5px; align-items:center; margin-top:10px;}
+  .seat-row{display:grid; grid-template-columns:20px repeat(2,32px) 10px repeat(2,32px); gap:4px; align-items:center; justify-content:center;}
+  .seat-row .rl{font-size:0.625rem; color:var(--ink-faint); text-align:center;}
+  .seat-btn{width:32px;height:32px;border-radius:7px; border:1px solid var(--line-strong); background:var(--surface-alt); font-size:0.6875rem; color:var(--ink-faint);}
+  .seat-btn.taken{background:var(--line); color:var(--line); border-color:var(--line);}
+  .seat-btn.selected{background:var(--primary); border-color:var(--primary); color:#fff;}
+  .seat-legend{display:flex; gap:12px; font-size:0.6875rem; color:var(--ink-soft); margin-top:12px; flex-wrap:wrap; justify-content:center;}
+  .seat-legend i{display:inline-block; width:10px;height:10px;border-radius:3px; margin-right:4px; vertical-align:-1px; border:1px solid var(--line-strong); font-style:normal;}
+  .seat-hint{font-size:0.75rem; color:var(--ink-faint); text-align:center; margin-top:8px;}
+
+  /* PAYMENT */
+  .itin-mini{background:var(--surface-alt); border-radius:14px; padding:12px 14px; margin:14px 0;}
+  .itin-row{display:flex; justify-content:space-between; font-size:0.7812rem; padding-block:4px;}
+  .itin-row span:first-child{color:var(--ink-faint);}
+  .price-line{display:flex; justify-content:space-between; font-size:0.8125rem; padding-block:3px;}
+  .price-line.total{font-weight:800; font-size:0.9375rem; border-top:1px solid var(--line); padding-top:8px; margin-top:4px;}
+  .pm-badge{width:34px;height:21px;border-radius:5px; color:#fff; font-size:0.5625rem; font-weight:700; display:flex;align-items:center;justify-content:center; flex-shrink:0; letter-spacing:.02em;}
+  .pm-badge.dual{position:relative; background:var(--surface-alt); border:1px solid var(--line);}
+  .pm-badge.dual i{position:absolute; width:12px;height:12px;border-radius:50%; top:4.5px; font-style:normal;}
+  .pm-badge.dual i.a{background:var(--mc-red); left:6px;}
+  .pm-badge.dual i.b{background:var(--mc-yellow); left:13px; mix-blend-mode:multiply;}
+  .pm-inline{display:inline-flex; align-items:center; gap:6px; font-weight:600;}
+  .pay-type-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:6px;}
+  .pay-type-tile{
+    background:var(--surface); border:1.5px solid var(--line); border-radius:13px; padding:14px 8px;
+    display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center; cursor:pointer;
+    font-family:inherit; font-size:0.75rem; font-weight:600; color:var(--ink-soft);
+    transition:border-color .15s, background .15s, color .15s;
+  }
+  .pay-type-tile svg{color:var(--ink-faint); transition:color .15s;}
+  .pay-type-tile.selected{border-color:var(--primary); background:color-mix(in srgb, var(--primary) 7%, var(--surface)); color:var(--primary);}
+  .pay-type-tile.selected svg{color:var(--primary);}
+  .pay-form{display:flex; flex-direction:column; gap:10px; margin:14px 0; padding:14px; background:var(--surface-alt); border-radius:14px;}
+  .pay-form[hidden]{display:none;}
+  .pay-form-note{font-size:0.75rem; color:var(--ink-soft); line-height:1.5;}
+  .pay-ref-box{text-align:center; padding:12px; background:var(--surface); border-radius:12px; border:1px dashed var(--line-strong);}
+  .pay-ref-box div{font-size:0.625rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-faint); margin-bottom:4px;}
+  .pay-ref-box b{font-family:'Plus Jakarta Sans',sans-serif; font-size:1.125rem; letter-spacing:.1em; color:var(--primary);}
+  .demo-note{font-size:0.6875rem; color:var(--ink-faint); margin-top:10px; text-align:center;}
+  .trust-note{display:flex; align-items:center; gap:8px; font-size:0.75rem; color:var(--ink-soft); background:var(--surface-alt); border-radius:12px; padding:10px 12px; margin-top:14px;}
+  .trust-note svg{flex-shrink:0; color:var(--good);}
+
+  /* CONFIRM */
+  .boarding-pass{margin-top:16px; border-radius:18px; overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow);}
+  .bp-top{background:linear-gradient(135deg, var(--primary), var(--primary-2)); color:#fff; padding:24px; text-align:center;}
+  .bp-top.cancelled{background:linear-gradient(135deg, #4C5A85, #7484B5);}
+  .bp-top .ok{width:46px;height:46px;border-radius:50%; background:rgba(255,255,255,.2); display:flex;align-items:center;justify-content:center; margin:0 auto 10px;}
+  .bp-top h2{color:#fff; font-size:1.1875rem;}
+  .bp-top p{opacity:.85; font-size:0.7812rem; margin-top:4px;}
+  .bp-perf{border-top:2px dashed var(--line-strong); margin-inline:16px;}
+  .bp-body{padding:18px; background:var(--surface);}
+  .bp-row{display:flex; justify-content:space-between; padding-block:8px; border-bottom:1px dashed var(--line); font-size:0.8125rem;}
+  .bp-row:last-child{border-bottom:none;}
+  .bp-row span:first-child{color:var(--ink-faint);}
+  .bp-pnr{text-align:center; margin-top:14px; padding:12px; background:var(--surface-alt); border-radius:12px;}
+  .bp-pnr b{font-family:'Plus Jakarta Sans',sans-serif; font-size:1.3125rem; letter-spacing:.12em; color:var(--primary);}
+  .bp-pnr div{font-size:0.625rem; text-transform:uppercase; letter-spacing:.07em; color:var(--ink-faint); margin-bottom:3px;}
+  .confirm-actions{display:flex; flex-direction:column; gap:10px; margin-top:18px;}
+
+  /* TRIPS / CHECKIN CARDS */
+  .trip-card{background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:14px; box-shadow:var(--shadow); margin-bottom:12px; cursor:pointer; transition:box-shadow .15s, transform .15s;}
+  .trip-card:hover{box-shadow:0 1px 2px rgba(44,27,82,.08), 0 20px 36px rgba(44,27,82,.16); transform:translateY(-1px);}
+  .trip-operator{display:flex; align-items:center; gap:8px; justify-content:center; margin-bottom:10px; font-size:0.7812rem; font-weight:700; color:var(--ink-soft);}
+  .leg-codes{display:flex; justify-content:space-between; font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.1875rem; color:var(--ink);}
+  .leg-city{display:flex; justify-content:space-between; font-size:0.6875rem; color:var(--ink-faint); margin-top:1px;}
+  .tags-row{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;}
+  .tag-pill{font-size:0.6562rem; font-weight:600; padding:5px 10px; border-radius:999px; border:1px solid var(--line); color:var(--ink-soft);}
+  .rebook-btn{margin-top:10px;}
+  .ci-dates{display:flex; justify-content:space-between; font-size:0.7188rem; color:var(--ink-faint); margin-top:8px;}
+  .ci-times{display:flex; justify-content:space-between; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:0.875rem; margin-top:2px;}
+  .trip-leg-label{font-size:0.6562rem; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--primary); margin-top:10px;}
+  .booked-meta{font-size:0.625rem; color:var(--ink-faint); margin-bottom:6px;}
+  .trip-leg-divider{height:1px; background:var(--line); margin:12px 0;}
+  .empty-state{text-align:center; padding-block:60px 30px; color:var(--ink-faint);}
+  .empty-state .em{width:52px;height:52px;border-radius:50%; background:var(--surface-alt); display:flex;align-items:center;justify-content:center; margin:0 auto 14px; color:var(--ink-faint);}
+  .empty-state p{font-size:0.8438rem; margin-bottom:14px;}
+
+  /* NOTIFICATIONS */
+  .notif-item{display:flex; gap:12px; padding:14px 2px; border-bottom:1px solid var(--line);}
+  .notif-icon{width:38px;height:38px;border-radius:50%; background:var(--surface-alt); display:flex;align-items:center;justify-content:center; color:var(--primary); flex-shrink:0;}
+  .notif-icon svg{width:17px;height:17px;}
+  .notif-item.unread .notif-icon{background:color-mix(in srgb, var(--primary) 18%, transparent);}
+  .notif-mid{flex:1; min-width:0;}
+  .notif-mid .t{font-size:0.8438rem; font-weight:700;}
+  .notif-mid .d{font-size:0.7812rem; color:var(--ink-soft); margin-top:2px;}
+  .notif-mid .ts{font-size:0.6875rem; color:var(--ink-faint); margin-top:4px;}
+  .notif-dot{width:8px;height:8px;border-radius:50%; background:var(--primary-2); flex-shrink:0; margin-top:5px;}
+
+  /* PROFILE */
+  .profile-head{display:flex; flex-direction:column; align-items:center; text-align:center; padding-block:20px 6px;}
+  .profile-avatar{width:76px;height:76px;border-radius:50%; background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; display:flex;align-items:center;justify-content:center; font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.5rem;}
+  .profile-name{font-size:1.1875rem; margin-top:12px;}
+  .profile-sub{font-size:0.8125rem; color:var(--ink-faint); margin-top:2px;}
+  .miles-card{background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff; border-radius:16px; padding:16px; margin:18px 0 6px; display:flex; justify-content:space-between; align-items:center;}
+  .miles-card svg{width:28px;height:28px; opacity:.85;}
+  .miles-card .m{font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:1.375rem;}
+  .miles-card span{opacity:.85; font-size:0.7188rem;}
+  .profile-row{display:flex; align-items:center; justify-content:space-between; padding:14px 2px; border-bottom:1px solid var(--line); font-size:0.875rem; font-weight:600; cursor:pointer;}
+  .profile-row .chev{color:var(--ink-faint);}
+
+  /* TAB BAR */
+  .tabbar{
+    position:fixed; left:50%; transform:translateX(-50%); bottom:0; width:100%; max-width:var(--maxw); z-index:30;
+    background:var(--surface); border-top:1px solid var(--line);
+    display:flex; padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  .tabbar[hidden]{display:none;}
+  .tab-btn{
+    flex:1; display:flex; flex-direction:column; align-items:center; gap:3px; padding:10px 4px 12px;
+    color:var(--ink-faint); background:transparent; border:none; cursor:pointer; font-size:0.6562rem; font-weight:600;
+  }
+  .tab-btn svg{width:20px;height:20px;}
+  .tab-btn.active{color:var(--primary);}
+  .tab-btn.active span{font-weight:700;}
+  .tab-indicator{
+    position:absolute; top:-5px; height:4px; width:30px; border-radius:4px;
+    background:var(--primary); left:0; transition:left .25s cubic-bezier(.4,0,.2,1);
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, [role="button"]:focus-visible{outline:2px solid var(--primary); outline-offset:2px;}
+
+  /* MODAL */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(20,10,40,.55); display:flex; align-items:center; justify-content:center;
+    z-index:100; padding:20px;
+  }
+  .modal-backdrop[hidden]{display:none;}
+  .modal-card{background:var(--surface); border-radius:18px; padding:22px; width:100%; max-width:340px; box-shadow:var(--shadow);}
+  .modal-card h3{font-size:1.0625rem;}
+  .modal-card p{font-size:0.8125rem; color:var(--ink-soft); margin-top:8px; line-height:1.5;}
+  .modal-actions{display:flex; flex-direction:column; gap:8px; margin-top:20px;}
+
+  /* TRIP ACTIONS */
+  .trip-actions{display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+  .trip-actions .btn{width:100%; white-space:nowrap;}
+  .cancelled-badge{
+    display:inline-flex; align-items:center; gap:6px; font-size:0.6562rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+    color:var(--bad); background:color-mix(in srgb, var(--bad) 12%, transparent); padding:4px 10px; border-radius:999px; margin-bottom:8px;
+  }
+  .checkedin-badge{
+    display:inline-flex; align-items:center; gap:6px; font-size:0.6562rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+    color:var(--good); background:color-mix(in srgb, var(--good) 14%, transparent); padding:4px 10px; border-radius:999px; margin-bottom:8px;
+  }
+  .trip-card.is-cancelled{opacity:.62;}
+  .bp-leg-tag{
+    display:inline-block; font-size:0.625rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase;
+    background:rgba(255,255,255,.22); padding:3px 10px; border-radius:999px; margin-bottom:8px;
+  }
+  .bp-qr{display:flex; justify-content:center; margin:16px 0 18px;}
+  .bp-qr svg{border-radius:6px; box-shadow:0 0 0 1px var(--line);}
+
+  /* ================= RESPONSIVE BREAKPOINTS =================
+     Base rules above = small phones (≤599px). Each tier below
+     widens the app column, scales the root type size (which
+     scales every rem-based font in this file), and bumps
+     button / touch-target sizing so controls grow with the
+     viewport instead of just floating in more empty space. */
+
+  /* Large phones / small tablets, e.g. 600–899 (iPhone Pro Max landscape, small Android tablets) */
+  @media (min-width:600px){
+    html{font-size:104%;}
+    .scroll{padding:0 26px 26px;}
+    .btn{padding:14px 24px;}
+    .icon-btn, .btn-back{width:37px;height:37px;}
+    .search-card{padding:22px;}
+  }
+
+  /* Tablets, e.g. 768–1023 (iPad portrait) */
+  @media (min-width:768px){
+    :root{--maxw:820px;}
+    html{font-size:108%;}
+    /* Past this width the app column keeps growing with --maxw while the
+       viewport's height doesn't, so a purely dvh-tall hero gets wider and
+       shorter the wider the window is, stretching the scene awkwardly.
+       Past this breakpoint, size the hero from its own width instead, so
+       the illustration keeps a consistent crop regardless of viewport width. */
+    .hero{height:auto; aspect-ratio:1400/597;}
+    .search-card{margin-top:-46px;}
+    .fare-grid{gap:12px;}
+    .seat-btn{width:36px;height:36px;}
+    .seat-row{grid-template-columns:24px repeat(2,36px) 12px repeat(2,36px); gap:6px;}
+    .tab-btn svg{width:22px;height:22px;}
+    .tab-btn{padding:12px 4px 14px;}
+    select, input[type=date], input[type=text], input[type=password]{padding:13px 13px 13px 38px;}
+  }
+
+  /* Laptops, e.g. 1024–1439 */
+  @media (min-width:1024px){
+    :root{--maxw:960px;}
+    html{font-size:112%;}
+    .scroll{padding:0 36px 36px;}
+    .btn{padding:15px 28px;}
+    .icon-btn, .btn-back{width:40px;height:40px;}
+    .pax-btn{width:28px;height:28px;}
+    .fare-grid{gap:14px;}
+    .pay-type-grid{gap:12px;}
+  }
+
+  /* Small desktops / large laptops, e.g. 1440–1919 */
+  @media (min-width:1440px){
+    :root{--maxw:1080px;}
+    html{font-size:116%;}
+    .scroll{padding:0 48px 48px;}
+    .btn{padding:16px 30px;}
+    .search-card{padding:28px;}
+  }
+
+  /* Big desktop monitors, 1920+ */
+  @media (min-width:1920px){
+    :root{--maxw:1200px;}
+    html{font-size:120%;}
+  }
+</style>
+
+<div class="stage">
+<div class="phone">
+  <div class="app-inner" id="appInner">
+
+    <!-- SPLASH -->
+    <section class="screen" id="screen-splash">
+      <div class="splash-wrap">
+        <span class="splash-logo-mark"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M3 11h18"/><path d="M7 17v2M17 17v2"/><circle cx="7.5" cy="19" r="1.4"/><circle cx="16.5" cy="19" r="1.4"/></svg></span>
+        <div class="splash-word">Guxo</div>
+        <div class="splash-spinner" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- SIGN UP -->
+    <section class="screen" id="screen-signup" hidden>
+      <div class="auth-wrap">
+        <div class="auth-logo"><span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M3 11h18"/><path d="M7 17v2M17 17v2"/><circle cx="7.5" cy="19" r="1.4"/><circle cx="16.5" cy="19" r="1.4"/></svg></span><span class="logo-word">Guxo</span></div>
+        <h1 class="auth-title">Create your account</h1>
+        <p class="auth-sub">Sign up to search, book, and manage your intercity bus tickets across Ethiopia.</p>
+        <form id="signupForm" class="auth-form">
+          <div class="row2">
+            <div class="field"><label>First name</label><input type="text" id="suFirstName" placeholder="First name"></div>
+            <div class="field"><label>Last name</label><input type="text" id="suLastName" placeholder="Last name"></div>
+          </div>
+          <div class="field"><label>Date of birth</label><input type="date" id="suDob"></div>
+          <div class="field"><label>Street address</label><input type="text" id="suStreet" placeholder="e.g. Bole Road 14"></div>
+          <div class="field"><label>City</label><input type="text" id="suCity" placeholder="e.g. Addis Ababa"></div>
+          <div class="field"><label>Email address</label><input type="text" id="suEmail" placeholder="you@example.com"></div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="suPassword" placeholder="Create a password">
+            <div class="pw-meter">
+              <div class="pw-meter-bar" id="suPwMeter"><span></span><span></span><span></span></div>
+              <div class="pw-meter-label" id="suPwMeterLabel"></div>
+            </div>
+          </div>
+          <div class="field"><label>Confirm password</label><input type="password" id="suConfirmPassword" placeholder="Re-enter your password"></div>
+          <p class="form-error" id="signupError" hidden></p>
+          <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+        </form>
+        <p class="auth-switch">Already have an account? <a href="#" id="toLogin">Log in</a></p>
+      </div>
+    </section>
+
+    <!-- LOG IN -->
+    <section class="screen" id="screen-login" hidden>
+      <div class="auth-wrap">
+        <div class="auth-logo"><span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M3 11h18"/><path d="M7 17v2M17 17v2"/><circle cx="7.5" cy="19" r="1.4"/><circle cx="16.5" cy="19" r="1.4"/></svg></span><span class="logo-word">Guxo</span></div>
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-sub">Log in to continue to your account.</p>
+        <form id="loginForm" class="auth-form">
+          <div class="field"><label>Email</label><input type="text" id="liEmail" placeholder="you@example.com"></div>
+          <div class="field"><label>Password</label><input type="password" id="liPassword" placeholder="Your password"></div>
+          <p class="form-error" id="loginError" hidden></p>
+          <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </form>
+        <p class="auth-switch">New here? <a href="#" id="toSignup">Sign up</a></p>
+      </div>
+    </section>
+
+    <!-- HOME -->
+    <section class="screen" id="screen-home" hidden>
+      <div class="hero">
+        <svg class="hero-scene" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="guxoSky" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#0E4A3D"/>
+              <stop offset="52%" stop-color="#3FAE8E"/>
+              <stop offset="100%" stop-color="#F2C878"/>
+            </linearGradient>
+          </defs>
+          <rect width="800" height="400" fill="url(#guxoSky)"/>
+          <circle cx="608" cy="222" r="76" fill="#F6D389" opacity=".45"/>
+          <circle cx="608" cy="222" r="44" fill="#F7C15C"/>
+          <path d="M60 210 Q 80 160 120 190 Q 150 150 180 195 Q 210 155 250 200 L 250 400 L 60 400 Z" fill="#EDEDED" opacity=".18"/>
+          <path d="M-20 268 Q 130 196 270 252 Q 380 204 470 244 Q 600 190 820 258 L 820 400 L -20 400 Z" fill="#0E6B5C" opacity=".92"/>
+          <path d="M-20 312 Q 160 250 340 300 Q 500 258 640 296 Q 730 268 820 300 L 820 400 L -20 400 Z" fill="#0A3F34"/>
+          <path d="M0 346 L 800 346 L 800 400 L 0 400 Z" fill="#4B5A55"/>
+          <path d="M0 346 L 800 346 L 800 358 L 0 358 Z" fill="#5C6C66"/>
+          <g fill="none" stroke="#EFE6D2" stroke-width="4" stroke-dasharray="22 18">
+            <path d="M0 372 L 800 372"/>
+          </g>
+          <g transform="translate(430 300)">
+            <ellipse cx="60" cy="86" rx="86" ry="8" fill="#08251E" opacity=".35"/>
+            <rect x="0" y="24" width="150" height="52" rx="10" fill="#F2A33D"/>
+            <path d="M0 44 h150 v-6 a8 8 0 0 0 -8 -8 H8 a8 8 0 0 0 -8 8 Z" fill="#0E6B5C"/>
+            <rect x="10" y="14" width="130" height="24" rx="6" fill="#0E6B5C"/>
+            <rect x="16" y="19" width="22" height="14" rx="2" fill="#DCEFE8"/>
+            <rect x="44" y="19" width="22" height="14" rx="2" fill="#DCEFE8"/>
+            <rect x="72" y="19" width="22" height="14" rx="2" fill="#DCEFE8"/>
+            <rect x="100" y="19" width="22" height="14" rx="2" fill="#DCEFE8"/>
+            <circle cx="30" cy="82" r="14" fill="#1B2521"/>
+            <circle cx="30" cy="82" r="6" fill="#8AA298"/>
+            <circle cx="120" cy="82" r="14" fill="#1B2521"/>
+            <circle cx="120" cy="82" r="6" fill="#8AA298"/>
+          </g>
+          <path d="M120 250 q10 -18 24 0 q10 -14 22 2" fill="none" stroke="#F6E7C8" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+          <path d="M640 140 q9 -16 21 0 q9 -12 20 2" fill="none" stroke="#F6E7C8" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+        </svg>
+        <div class="topbar on-hero">
+          <div class="tb-left"><span class="logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M3 11h18"/><path d="M7 17v2M17 17v2"/><circle cx="7.5" cy="19" r="1.4"/><circle cx="16.5" cy="19" r="1.4"/></svg></span><span class="logo-word">Guxo</span></div>
+          <div class="tb-right">
+            <span class="icon-btn icon-bell"><span class="dot"></span></span>
+            <span class="icon-btn icon-user"></span>
+          </div>
+        </div>
+        <div class="hero-copy" id="heroGreeting" role="button" tabindex="0">
+          <div class="hi">Welcome back</div>
+          <h1 id="heroGreetingName">there</h1>
+        </div>
+      </div>
+      <div class="scroll">
+        <div id="homeSearchSlot"></div>
+      </div>
+    </section>
+
+    <!-- BOOK -->
+    <section class="screen" id="screen-book" hidden>
+      <div class="topbar"><div class="tb-left"><span class="tb-title">Book a Bus</span></div>
+        <div class="tb-right"><span class="icon-btn icon-user"></span></div>
+      </div>
+      <div class="scroll">
+        <div id="bookSearchSlot"></div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section class="screen" id="screen-results" hidden>
+      <div class="topbar"><div class="tb-left"><span class="btn-back icon-back" id="backFromResults"></span><span class="tb-title" id="resultsTitle">Buses</span></div>
+      </div>
+      <div class="scroll">
+        <div class="leg-banner" id="resultsLegBanner" hidden>
+          <span class="leg-step" id="resultsLegStep">1</span>
+          <div class="leg-copy"><div class="leg-title" id="resultsLegTitle">Outbound bus</div><div class="leg-sub" id="resultsLegSub">Choose your departing bus</div></div>
+        </div>
+        <div class="results-info-card">
+          <p class="fc-sub" id="resultsMeta">—</p>
+          <p class="trend-note" id="trendNote"></p>
+        </div>
+        <div class="date-strip" id="dateStrip"></div>
+        <div class="filter-row">
+          <div class="filter-field">
+            <label for="fStops">Stops</label>
+            <div class="select-wrap">
+              <select class="sort-select" id="fStops">
+                <option value="any">Any number of stops</option>
+                <option value="nonstop">Nonstop only</option>
+                <option value="onestop">1 stop only</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-field">
+            <label for="sortSelect">Sort by</label>
+            <div class="select-wrap">
+              <select class="sort-select" id="sortSelect">
+                <option value="best">Best</option>
+                <option value="price">Cheapest</option>
+                <option value="duration">Fastest</option>
+                <option value="depart">Earliest</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="price-slider">
+          <input type="range" id="priceRange">
+          <span class="price-cap" id="priceCapLabel">up to ETB 0</span>
+        </div>
+        <div class="bus-list" id="busList"></div>
+      </div>
+    </section>
+
+    <!-- FARE & SEATS -->
+    <section class="screen" id="screen-fare" hidden>
+      <div class="topbar"><div class="tb-left"><span class="btn-back icon-back" id="backFromFare"></span><span class="tb-title">Fare &amp; Seats</span></div>
+      </div>
+      <div class="scroll">
+        <div class="summary-strip" id="fareSummaryStrip"></div>
+        <div class="summary-strip" id="fareSummaryStripReturn" hidden></div>
+        <div class="sec-title">Choose your fare</div>
+        <div class="fare-grid" id="fareGrid"></div>
+        <ul class="policy-note">
+          <li>Children under 5 travel free on a parent's lap</li>
+          <li>Comfort &amp; VIP include 1 stowed bag · Standard is hand luggage only</li>
+          <li>The price shown at payment is final — no fees added at checkout</li>
+        </ul>
+        <div class="sec-title">Passenger details</div>
+        <p class="fam-note">Enter each traveler once — we'll keep everyone organized for checkout, no repeating details.</p>
+        <div class="pax-form" id="paxForm"></div>
+        <div class="sec-title" id="seatTitleOut">Pick your seat<span id="seatCountHint"></span></div>
+        <div class="seat-map" id="seatMap"></div>
+        <p class="seat-hint" id="seatHint"></p>
+        <div id="returnSeatBlock" hidden>
+          <div class="sec-title">Return seats<span id="seatCountHintReturn"></span></div>
+          <div class="seat-map" id="seatMapReturn"></div>
+          <p class="seat-hint" id="seatHintReturn"></p>
+        </div>
+        <div class="seat-legend">
+          <span><i style="background:var(--surface-alt)"></i>Available</span>
+          <span><i style="background:var(--primary); border-color:var(--primary)"></i>Selected</span>
+          <span><i style="background:var(--line); border-color:var(--line)"></i>Taken</span>
+        </div>
+        <button class="btn btn-primary btn-block" id="toPaymentBtn" style="margin-top:18px;" disabled>Continue to payment</button>
+      </div>
+    </section>
+
+    <!-- PAYMENT -->
+    <section class="screen" id="screen-payment" hidden>
+      <div class="topbar"><div class="tb-left"><span class="btn-back icon-back" id="backFromPayment"></span><span class="tb-title">Payment</span></div>
+      </div>
+      <div class="scroll">
+        <div class="itin-mini" id="itinBox"></div>
+        <div class="sec-title">Choose payment type</div>
+        <div class="pay-type-grid" id="payTypeGrid">
+          <button type="button" class="pay-type-tile" data-type="card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+            <span>Card</span>
+          </button>
+          <button type="button" class="pay-type-tile" data-type="phone">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>
+            <span>Phone</span>
+          </button>
+          <button type="button" class="pay-type-tile" data-type="bank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v9M10 10v9M14 10v9M19 10v9"/><path d="M3 21h18"/></svg>
+            <span>Bank counter</span>
+          </button>
+        </div>
+        <div class="pay-form" id="payForm" hidden></div>
+        <div class="itin-mini" id="priceBox" style="margin-top:16px;"></div>
+        <button class="btn btn-primary btn-block" id="payBtn" style="margin-top:6px;" disabled>Pay &amp; confirm</button>
+        <div class="trust-note"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg><span>Secure checkout · No hidden fees · The total above is exactly what you pay</span></div>
+        <p class="demo-note">Demo checkout — this is a prototype, no real payment is processed.</p>
+      </div>
+    </section>
+
+    <!-- CONFIRM -->
+    <section class="screen" id="screen-confirm" hidden>
+      <div class="topbar"><div class="tb-left"><span class="tb-title">Booked</span></div></div>
+      <div class="scroll">
+        <div class="boarding-pass">
+          <div class="bp-top">
+            <div class="ok"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h2>You're booked</h2>
+            <p>Saved to My Trips on this device.</p>
+          </div>
+          <div class="bp-perf"></div>
+          <div class="bp-body">
+            <div id="bpBox"></div>
+            <div class="bp-pnr"><div>Confirmation code</div><b id="pnrCode">—</b></div>
+          </div>
+        </div>
+        <div class="confirm-actions">
+          <button class="btn btn-primary btn-block" id="doneBtn">View in My Trips</button>
+          <button class="btn btn-ghost btn-block" id="bookAnotherBtn">Book another bus</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MY TRIPS -->
+    <section class="screen" id="screen-trips" hidden>
+      <div class="topbar"><div class="tb-left"><span class="tb-title">My Trips</span></div>
+        <div class="tb-right"><span class="icon-btn icon-user"></span></div>
+      </div>
+      <div class="scroll" id="tripsBox"></div>
+    </section>
+
+    <!-- TRIP DETAIL / RECEIPT -->
+    <section class="screen" id="screen-trip-detail" hidden>
+      <div class="topbar"><div class="tb-left"><span class="btn-back icon-back" id="backFromTripDetail"></span><span class="tb-title">Booking Details</span></div>
+      </div>
+      <div class="scroll">
+        <div class="boarding-pass">
+          <div class="bp-top" id="tripDetailTop">
+            <div class="ok" id="tripDetailIcon"></div>
+            <h2 id="tripDetailHeading">You're booked</h2>
+            <p id="tripDetailSub">Saved to My Trips on this device.</p>
+          </div>
+          <div class="bp-perf"></div>
+          <div class="bp-body">
+            <div id="tripDetailBox"></div>
+            <div class="bp-pnr"><div>Confirmation code</div><b id="tripDetailPnr">—</b></div>
+          </div>
+        </div>
+        <div class="sec-title">Payment &amp; status</div>
+        <div class="itin-mini" id="tripDetailPayment"></div>
+      </div>
+    </section>
+
+    <!-- CHECK-IN -->
+    <section class="screen" id="screen-checkin" hidden>
+      <div class="topbar"><div class="tb-left"><span class="tb-title">My Tickets</span></div>
+        <div class="tb-right"><span class="icon-btn icon-user"></span></div>
+      </div>
+      <div class="scroll" id="checkinBox"></div>
+    </section>
+
+    <!-- BOARDING PASS -->
+    <section class="screen" id="screen-boarding" hidden>
+      <div class="topbar"><div class="tb-left"><span class="btn-back icon-back" id="backFromBoarding"></span><span class="tb-title">E-Ticket</span></div>
+      </div>
+      <div class="scroll" id="boardingBox"></div>
+    </section>
+
+    <!-- NOTIFICATIONS -->
+    <section class="screen" id="screen-notifications" hidden>
+      <div class="topbar"><div class="tb-left"><span class="btn-back icon-back" id="backFromNotifications"></span><span class="tb-title">Notifications</span></div></div>
+      <div class="scroll" id="notifBox"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="screen" id="screen-profile" hidden>
+      <div class="topbar"><div class="tb-left"><span class="btn-back icon-back" id="backFromProfile"></span><span class="tb-title">Profile</span></div></div>
+      <div class="scroll" id="profileBox"></div>
+    </section>
+
+    <!-- TAB BAR -->
+    <nav class="tabbar" id="tabbar">
+      <span class="tab-indicator" id="tabIndicator"></span>
+      <button class="tab-btn active" data-tab="home"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg><span>Home</span></button>
+      <button class="tab-btn" data-tab="book"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M4 12h16"/></svg><span>Book</span></button>
+      <button class="tab-btn" data-tab="trips"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/><path d="M9 15l2.2 2L15 13"/></svg><span>My Trips</span></button>
+      <button class="tab-btn" data-tab="checkin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M8 14l2 2 4-4"/></svg><span>Tickets</span></button>
+    </nav>
+
+    <!-- CANCEL TRIP CONFIRM MODAL -->
+    <div class="modal-backdrop" id="cancelModal" hidden>
+      <div class="modal-card">
+        <h3>Cancel this trip?</h3>
+        <p id="cancelModalBody">This booking will be cancelled and removed from check-in. This can't be undone.</p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-primary btn-block" id="cancelModalKeep">Keep trip</button>
+          <button type="button" class="btn btn-danger btn-block" id="cancelModalConfirm">Yes, cancel trip</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE LOADER -->
+    <div class="page-loader" id="pageLoader" hidden>
+      <div class="spinner" aria-hidden="true"></div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var ICONS = {
+    back:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
+    bell:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>',
+    user:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M5 20c1.4-3.6 4.2-5.5 7-5.5s5.6 1.9 7 5.5"/></svg>',
+    pin:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11a7 7 0 0 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>',
+    bus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M3 11h18"/><path d="M7 17v2M17 17v2"/><circle cx="7.5" cy="19" r="1.4"/><circle cx="16.5" cy="19" r="1.4"/></svg>',
+    empty:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2.5"/><path d="M3 11h18"/><path d="M7 17v2M17 17v2"/><circle cx="7.5" cy="19" r="1.4"/><circle cx="16.5" cy="19" r="1.4"/></svg>',
+    refresh:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>',
+    cancelX:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9.5 9.5 5 5M14.5 9.5l-5 5"/></svg>'
+  };
+  document.querySelectorAll('.icon-btn.icon-bell').forEach(function(el){
+    el.insertAdjacentHTML('afterbegin', ICONS.bell);
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0'); el.setAttribute('aria-label','Notifications');
+    el.addEventListener('click', function(){ goTo('notifications'); });
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); goTo('notifications'); } });
+  });
+  document.querySelectorAll('.icon-btn.icon-user').forEach(function(el){
+    el.insertAdjacentHTML('afterbegin', ICONS.user);
+    el.setAttribute('role','button'); el.setAttribute('tabindex','0'); el.setAttribute('aria-label','Profile');
+    el.addEventListener('click', function(){ goTo('profile'); });
+    el.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); goTo('profile'); } });
+  });
+  document.querySelectorAll('.btn-back.icon-back').forEach(function(el){ el.innerHTML = ICONS.back; });
+  var heroGreeting=$('#heroGreeting');
+  if(heroGreeting){
+    heroGreeting.setAttribute('aria-label','Open profile');
+    heroGreeting.addEventListener('click', function(){ goTo('profile'); });
+    heroGreeting.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); goTo('profile'); } });
+  }
+
+  var STATIONS = [
+    {code:'ADD', city:'Addis Ababa', name:'Autobus Tera Station'},
+    {code:'BDR', city:'Bahir Dar', name:'Bahir Dar Central Station'},
+    {code:'HWS', city:'Hawassa', name:'Hawassa Main Terminal'},
+    {code:'MQL', city:'Mekelle', name:'Mekelle Bus Terminal'},
+    {code:'DDW', city:'Dire Dawa', name:'Dire Dawa Station'},
+    {code:'JIM', city:'Jimma', name:'Jimma Central Terminal'},
+    {code:'ADA', city:'Adama', name:'Adama Station'},
+    {code:'GDR', city:'Gondar', name:'Gondar Bus Terminal'},
+    {code:'DES', city:'Dessie', name:'Dessie Station'},
+    {code:'ARM', city:'Arba Minch', name:'Arba Minch Terminal'}
+  ];
+  var OPERATOR = {code:'GX', name:'Guxo Line'};
+  var FARES = [
+    {id:'standard', name:'Standard', add:0, feats:['2+2 reclining seat','Onboard fan/AC','No changes']},
+    {id:'comfort', name:'Comfort', add:150, feats:['Extra legroom','Priority boarding','Fee to change']},
+    {id:'vip', name:'VIP', add:320, feats:['2+1 VIP cabin','Free changes','Snack &amp; water included']}
+  ];
+  var state = {
+    origin:'ADD', destination:'BDR', departDate:'', returnDate:'', tripType:'one', passengers:1,
+    bookingLeg:'out', flights:[], outFlight:null, returnFlight:null, fareTier:null,
+    seatsOut:[], seatsReturn:[],
+    paymentType:null, pnr:null, trips:[], currentUser:null
+  };
+  var cur = {screen:'home', tab:'home'};
+  var stack = [];
+
+  function $(s,r){return (r||document).querySelector(s);}
+  function $all(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+  function fmtPrice(n){return 'ETB '+Math.round(n).toLocaleString();}
+  function pointsFor(n){return Math.round(n/8).toLocaleString();}
+  function fmtDur(m){return Math.floor(m/60)+'h '+(m%60)+'m';}
+  function fmtTime(d){var h=d.getHours(), m=d.getMinutes(), ap=h>=12?'PM':'AM'; h=h%12; if(h===0) h=12; return h+':'+(m<10?'0':'')+m+' '+ap;}
+  function fmtDate(d){return d.toLocaleDateString(undefined,{weekday:'short', month:'short', day:'numeric'});}
+  function station(code){return STATIONS.filter(function(a){return a.code===code;})[0];}
+  function formatStation(a){ return a.city+' ('+a.code+')'; }
+  function findStationByInput(val){
+    val=(val||'').trim();
+    if(!val) return null;
+    var m=val.match(/\(([A-Za-z]{3})\)\s*$/);
+    if(m){
+      var hit=station(m[1].toUpperCase());
+      if(hit) return hit;
+    }
+    var lower=val.toLowerCase();
+    var exact=STATIONS.filter(function(a){ return a.city.toLowerCase()===lower || a.code.toLowerCase()===lower; })[0];
+    if(exact) return exact;
+    return STATIONS.filter(function(a){ return a.city.toLowerCase().indexOf(lower)===0; })[0] || null;
+  }
+  function rand(a,b){return Math.random()*(b-a)+a;}
+  function randInt(a,b){return Math.floor(rand(a,b+1));}
+  function pick(arr){return arr[randInt(0,arr.length-1)];}
+  function uid(){return Math.random().toString(36).slice(2,8);}
+  function todayDateStr(){return new Date().toISOString().slice(0,10);}
+
+  /* ---------- saved traveler (autosaved locally on this device) ---------- */
+  var TRAVELER_KEY='guxo_traveler';
+  function loadSavedTraveler(){
+    try{
+      var raw=window.localStorage.getItem(TRAVELER_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function saveTraveler(name, email){
+    try{
+      window.localStorage.setItem(TRAVELER_KEY, JSON.stringify({name:name||'', email:email||''}));
+    }catch(e){ /* storage unavailable — ignore, nothing else depends on it */ }
+  }
+
+  /* ---------- account (sign up / log in — registered locally on this device) ---------- */
+  var ACCOUNT_KEY='guxo_account';
+  function loadAccount(){
+    try{
+      var raw=window.localStorage.getItem(ACCOUNT_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(e){ return null; }
+  }
+  function saveAccount(acc){
+    try{ window.localStorage.setItem(ACCOUNT_KEY, JSON.stringify(acc)); }catch(e){ /* storage unavailable */ }
+  }
+  function initialsFor(name){
+    if(!name) return '?';
+    var parts=name.trim().split(/\s+/).filter(Boolean);
+    var first=parts[0]?parts[0][0]:'', last=parts.length>1?parts[parts.length-1][0]:'';
+    return (first+last).toUpperCase() || '?';
+  }
+  function firstNameOf(name){
+    if(!name) return 'there';
+    return name.trim().split(/\s+/)[0];
+  }
+  function applyHeroGreeting(){
+    var el=$('#heroGreetingName');
+    if(el) el.textContent = state.currentUser ? state.currentUser.name : 'there';
+  }
+
+  var suDobInp=$('#suDob');
+  if(suDobInp) suDobInp.max=todayDateStr();
+
+  function passwordStrengthLevel(pw){
+    if(!pw) return null;
+    var score=0;
+    if(pw.length>=8) score++;
+    if(pw.length>=12) score++;
+    if(/[a-z]/.test(pw) && /[A-Z]/.test(pw)) score++;
+    if(/\d/.test(pw)) score++;
+    if(/[^A-Za-z0-9]/.test(pw)) score++;
+    if(score<=1) return 'weak';
+    if(score<=3) return 'medium';
+    return 'strong';
+  }
+  function updatePasswordMeter(){
+    var pw=$('#suPassword').value;
+    var meter=$('#suPwMeter'), label=$('#suPwMeterLabel');
+    if(!meter || !label) return;
+    var level=pw ? passwordStrengthLevel(pw) : null;
+    $all('span', meter).forEach(function(seg, i){
+      seg.className='';
+      if(level==='weak' && i===0) seg.className='weak';
+      if(level==='medium' && i<=1) seg.className='medium';
+      if(level==='strong') seg.className='strong';
+    });
+    label.textContent = level ? (level.charAt(0).toUpperCase()+level.slice(1)) : '';
+    label.className = 'pw-meter-label'+(level?' '+level:'');
+  }
+  $('#suPassword').addEventListener('input', updatePasswordMeter);
+
+  $('#signupForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var firstName=$('#suFirstName').value.trim(), lastName=$('#suLastName').value.trim();
+    var dob=$('#suDob').value;
+    var street=$('#suStreet').value.trim(), city=$('#suCity').value.trim();
+    var email=$('#suEmail').value.trim();
+    var pw=$('#suPassword').value, pw2=$('#suConfirmPassword').value;
+    var err=$('#signupError');
+
+    if(firstName.length<1 || lastName.length<1){
+      err.textContent='Enter your first and last name.'; err.hidden=false; return;
+    }
+    if(!dob){
+      err.textContent='Enter your date of birth.'; err.hidden=false; return;
+    }
+    if(street.length<2 || city.length<1){
+      err.textContent='Enter your street address and city.'; err.hidden=false; return;
+    }
+    if(email.indexOf('@')<1){
+      err.textContent='Enter a valid email address.'; err.hidden=false; return;
+    }
+    if(pw.length<6){
+      err.textContent='Choose a password with at least 6 characters.'; err.hidden=false; return;
+    }
+    if(pw!==pw2){
+      err.textContent='Passwords do not match.'; err.hidden=false; return;
+    }
+    err.hidden=true;
+    var name=(firstName+' '+lastName).trim();
+    var account={firstName:firstName, lastName:lastName, name:name, dob:dob, street:street, city:city, email:email, password:pw};
+    saveAccount(account);
+    state.currentUser=account;
+    saveTraveler(name, email);
+    applyHeroGreeting();
+    navigateWithLoading(function(){ stack=[]; cur={screen:'home', tab:'home'}; render(); });
+  });
+
+  $('#loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email=$('#liEmail').value.trim(), pw=$('#liPassword').value;
+    var err=$('#loginError');
+    var account=loadAccount();
+    if(!account || account.email.toLowerCase()!==email.toLowerCase() || account.password!==pw){
+      err.textContent='Incorrect email or password.'; err.hidden=false; return;
+    }
+    err.hidden=true;
+    state.currentUser=account;
+    applyHeroGreeting();
+    navigateWithLoading(function(){ stack=[]; cur={screen:'home', tab:'home'}; render(); });
+  });
+
+  $('#toLogin').addEventListener('click', function(e){
+    e.preventDefault();
+    var acc=loadAccount(); if(acc) $('#liEmail').value=acc.email;
+    navigateWithLoading(function(){ cur={screen:'login', tab:null}; render(); });
+  });
+  $('#toSignup').addEventListener('click', function(e){
+    e.preventDefault();
+    navigateWithLoading(function(){ cur={screen:'signup', tab:null}; render(); });
+  });
+
+  /* ---------- reusable search form ---------- */
+  var formSeq=0;
+  function createSearchForm(){
+    formSeq++;
+    var ns='sf'+formSeq;
+    var root=document.createElement('form');
+    root.className='search-card' + (formSeq>1?' compact':'');
+    root.innerHTML =
+      '<div class="trip-toggle">'+
+        '<button type="button" class="trip-seg-btn active" data-trip="one">One way</button>'+
+        '<button type="button" class="trip-seg-btn" data-trip="round">Round trip</button>'+
+      '</div>'+
+      '<div class="field"><label>From</label><div class="input-icon">'+ICONS.pin+'<input type="text" class="f-origin" list="'+ns+'-originList" autocomplete="off" placeholder="City or station code"></div></div>'+
+      '<div class="field"><label>To</label><div class="input-icon">'+ICONS.pin+'<input type="text" class="f-dest" list="'+ns+'-destList" autocomplete="off" placeholder="City or station code"></div></div>'+
+      '<datalist id="'+ns+'-originList"></datalist>'+
+      '<datalist id="'+ns+'-destList"></datalist>'+
+      '<div class="row2">'+
+        '<div class="field"><label>Depart</label><div class="input-icon no-ic"><input type="date" class="f-date"></div></div>'+
+        '<div class="field f-return-field" hidden><label>Return</label><div class="input-icon no-ic"><input type="date" class="f-return"></div></div>'+
+        '<div class="field f-pax-inline-field"><label>Passengers</label><div class="pax-stepper"><button type="button" class="pax-btn f-paxminus">−</button><span class="mono f-paxcount">1</span><button type="button" class="pax-btn f-paxplus">+</button></div></div>'+
+      '</div>'+
+      '<div class="field f-pax-block-field" hidden><label>Passengers</label><div class="pax-stepper"><button type="button" class="pax-btn f-paxminus">−</button><span class="mono f-paxcount">1</span><button type="button" class="pax-btn f-paxplus">+</button></div></div>'+
+      '<button type="submit" class="btn btn-primary btn-block search-submit">Search buses</button>'+
+      '<p class="form-error" hidden>Choose two different stations.</p>';
+
+    var originInp=root.querySelector('.f-origin'), destInp=root.querySelector('.f-dest');
+    var originList=root.querySelector('#'+ns+'-originList'), destList=root.querySelector('#'+ns+'-destList');
+    var dateInp=root.querySelector('.f-date');
+    var returnField=root.querySelector('.f-return-field');
+    var returnInp=root.querySelector('.f-return');
+    var paxInlineField=root.querySelector('.f-pax-inline-field');
+    var paxBlockField=root.querySelector('.f-pax-block-field');
+    var err=root.querySelector('.form-error');
+    var pax=1;
+    var tripType='one';
+
+    function updatePaxDisplays(){ root.querySelectorAll('.f-paxcount').forEach(function(el){ el.textContent=pax; }); }
+
+    function fillDatalist(listEl, exclude){
+      listEl.innerHTML='';
+      STATIONS.forEach(function(a){
+        if(a.code===exclude) return;
+        var o=document.createElement('option'); o.value=formatStation(a);
+        listEl.appendChild(o);
+      });
+    }
+    fillDatalist(originList, state.destination);
+    fillDatalist(destList, state.origin);
+    originInp.value=formatStation(station(state.origin));
+    destInp.value=formatStation(station(state.destination));
+    originInp.addEventListener('input', function(){
+      var a=findStationByInput(originInp.value);
+      fillDatalist(destList, a?a.code:null);
+    });
+    destInp.addEventListener('input', function(){
+      var a=findStationByInput(destInp.value);
+      fillDatalist(originList, a?a.code:null);
+    });
+
+    var todayStr=todayDateStr();
+    dateInp.min=todayStr; dateInp.value=todayStr;
+    returnInp.min=todayStr;
+    // returnInp.value is intentionally left unset here — it's only ever
+    // given a value while Round trip is active (see the trip-seg-btn
+    // handler below), so nothing return-date-related exists while
+    // One way is selected.
+
+    function syncReturnMin(){
+      returnInp.min=dateInp.value;
+      if(returnInp.value && returnInp.value<dateInp.value) returnInp.value=dateInp.value;
+    }
+
+    dateInp.addEventListener('change', function(){
+      if(tripType==='round') syncReturnMin();
+    });
+
+    root.querySelectorAll('.trip-seg-btn').forEach(function(b){
+      b.addEventListener('click', function(){
+        tripType=b.getAttribute('data-trip');
+        root.querySelectorAll('.trip-seg-btn').forEach(function(x){ x.classList.toggle('active', x===b); });
+        var isRound = tripType==='round';
+        returnField.hidden=!isRound;
+        paxInlineField.hidden=isRound;
+        paxBlockField.hidden=!isRound;
+        if(isRound){
+          syncReturnMin();
+          if(!returnInp.value){
+            returnInp.value=new Date(new Date(dateInp.value+'T00:00:00').getTime()+7*86400000).toISOString().slice(0,10);
+          }
+        } else {
+          returnInp.value='';
+        }
+      });
+    });
+
+    root.querySelectorAll('.f-paxminus').forEach(function(b){ b.addEventListener('click', function(){ pax=Math.max(1,pax-1); updatePaxDisplays(); }); });
+    root.querySelectorAll('.f-paxplus').forEach(function(b){ b.addEventListener('click', function(){ pax=Math.min(6,pax+1); updatePaxDisplays(); }); });
+
+    root.addEventListener('submit', function(e){
+      e.preventDefault();
+      var originStation=findStationByInput(originInp.value);
+      var destStation=findStationByInput(destInp.value);
+      if(!originStation || !destStation){
+        err.textContent='Enter a valid departure and destination city.'; err.hidden=false; return;
+      }
+      if(originStation.code===destStation.code){
+        err.textContent='Choose two different stations.'; err.hidden=false; return;
+      }
+      if(tripType==='round' && !returnInp.value){
+        err.textContent='Choose a return date.'; err.hidden=false; return;
+      }
+      err.hidden=true;
+      originInp.value=formatStation(originStation);
+      destInp.value=formatStation(destStation);
+      performSearch(originStation.code, destStation.code, dateInp.value, pax, tripType, tripType==='round'?returnInp.value:null);
+    });
+    return root;
+  }
+  $('#homeSearchSlot').appendChild(createSearchForm());
+  $('#bookSearchSlot').appendChild(createSearchForm());
+
+  /* ---------- navigation ---------- */
+  var SCREEN_FOR_TAB={home:'home', book:'book', trips:'trips', checkin:'checkin'};
+  function render(){
+    $all('.screen').forEach(function(el){ el.hidden = el.id !== 'screen-'+cur.screen; });
+    var tabbar=$('#tabbar');
+    if(cur.tab){
+      tabbar.hidden=false;
+      $all('.tab-btn').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-tab')===cur.tab); });
+      updateTabIndicator(cur.tab);
+    } else { tabbar.hidden=true; }
+    window.scrollTo({top:0, behavior:'instant'});
+    if(cur.screen==='trips') renderTrips();
+    if(cur.screen==='checkin') renderCheckin();
+    if(cur.screen==='notifications') renderNotifications();
+    if(cur.screen==='profile') renderProfile();
+  }
+  function updateTabIndicator(tabId){
+    var btn=$('.tab-btn[data-tab="'+tabId+'"]');
+    var bar=$('#tabIndicator');
+    if(!btn || !bar) return;
+    var btnRect=btn.getBoundingClientRect();
+    var barRect=$('#tabbar').getBoundingClientRect();
+    var center=(btnRect.left-barRect.left)+btnRect.width/2;
+    bar.style.left=(center-15)+'px';
+  }
+  window.addEventListener('resize', function(){ if(cur.tab) updateTabIndicator(cur.tab); });
+
+  var REDUCE_MOTION = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var NAV_DELAY = REDUCE_MOTION ? 0 : 420;
+  var navTimer = null;
+  function navigateWithLoading(applyFn){
+    var loader = $('#pageLoader');
+    if(loader) loader.hidden = false;
+    clearTimeout(navTimer);
+    navTimer = setTimeout(function(){
+      applyFn();
+      if(loader) loader.hidden = true;
+    }, NAV_DELAY);
+  }
+  function showRoot(tabId){ navigateWithLoading(function(){ stack=[]; cur={screen:SCREEN_FOR_TAB[tabId], tab:tabId}; render(); }); }
+  function goTo(screenId){ navigateWithLoading(function(){ stack.push(cur); cur={screen:screenId, tab:null}; render(); }); }
+  function goBack(){ navigateWithLoading(function(){ cur=stack.pop()||{screen:'home', tab:'home'}; render(); }); }
+
+  $all('.tab-btn').forEach(function(b){ b.addEventListener('click', function(){ showRoot(b.getAttribute('data-tab')); }); });
+  $('#backFromResults').addEventListener('click', goBack);
+  $('#backFromFare').addEventListener('click', goBack);
+  $('#backFromPayment').addEventListener('click', goBack);
+  $('#backFromNotifications').addEventListener('click', goBack);
+  $('#backFromProfile').addEventListener('click', goBack);
+  $('#backFromTripDetail').addEventListener('click', goBack);
+  $('#backFromBoarding').addEventListener('click', goBack);
+
+  /* ---------- search -> results ---------- */
+  function generateBuses(origin, destination, dateStr){
+    var list=[];
+    for(var i=0;i<6;i++){
+      var stops = Math.random()<0.75 ? 0 : 1;
+      var baseDur = randInt(180,540);
+      var layoverMin = stops? randInt(15,35) : 0;
+      var totalDur = baseDur + layoverMin;
+      var dep=new Date(dateStr+'T00:00:00'); dep.setHours(randInt(5,20), pick([0,10,15,20,30,40,45,50]),0,0);
+      var arr=new Date(dep.getTime()+totalDur*60000);
+      var price=Math.round((totalDur*2.6 + rand(60,220))/10)*10;
+      var layoverCity = stops ? pick(STATIONS.filter(function(a){return a.code!==origin && a.code!==destination;})).code : null;
+      list.push({
+        id:'BS'+i+'-'+uid(), busNo: OPERATOR.code+' '+randInt(100,899),
+        dep:dep, arr:arr, durationMin:totalDur, stops:stops, layoverCity:layoverCity, layoverMin:layoverMin, price:price, seatMap:null
+      });
+    }
+    return list;
+  }
+
+  function performSearch(o,d,date,pax,tripType,returnDate){
+    state.origin=o; state.destination=d; state.departDate=date; state.passengers=pax;
+    state.tripType=tripType||'one'; state.returnDate=returnDate||'';
+    state.bookingLeg='out'; state.outFlight=null; state.returnFlight=null;
+    state.seatsOut=[]; state.seatsReturn=[]; state.fareTier=null;
+    loadLegResults();
+    goTo('results');
+  }
+
+  function currentLegParams(){
+    return state.bookingLeg==='out'
+      ? {o:state.origin, d:state.destination, date:state.departDate}
+      : {o:state.destination, d:state.origin, date:state.returnDate};
+  }
+
+  function loadLegResults(){
+    var p=currentLegParams();
+    state.flights=generateBuses(p.o,p.d,p.date);
+    renderResultsHeader();
+    renderDateStrip(p.o,p.d,p.date);
+    setupResultFilters();
+    renderBusList();
+  }
+
+  function renderResultsHeader(){
+    var p=currentLegParams();
+    var a=station(p.d);
+    $('#resultsTitle').textContent = p.o+' → '+p.d;
+    $('#resultsMeta').textContent = fmtDate(new Date(p.date+'T00:00:00'))+' · '+state.passengers+' passenger'+(state.passengers>1?'s':'')+' to '+a.city;
+    $('#trendNote').textContent = 'Fares on '+p.o+' → '+p.d+' have stayed within a similar range over the last few weeks.';
+
+    var banner=$('#resultsLegBanner');
+    if(state.tripType==='round'){
+      banner.hidden=false;
+      var isOut = state.bookingLeg==='out';
+      $('#resultsLegStep').textContent = isOut ? '1' : '2';
+      $('#resultsLegTitle').textContent = isOut ? 'Outbound bus' : 'Return bus';
+      $('#resultsLegSub').textContent = isOut
+        ? 'Step 1 of 2 — choose your departing bus, then pick your return'
+        : 'Step 2 of 2 — now choose your bus back to '+station(p.d).city;
+    } else {
+      banner.hidden=true;
+    }
+  }
+
+  function cheapestPriceFor(o,d,dateStr){
+    var sample=generateBuses(o,d,dateStr);
+    return Math.min.apply(null, sample.map(function(f){return f.price;}));
+  }
+  function renderDateStrip(o,d,dateStr){
+    var box=$('#dateStrip'); box.innerHTML='';
+    var base=new Date(dateStr+'T00:00:00');
+    var minStr = state.bookingLeg==='out' ? todayDateStr() : (state.departDate || todayDateStr());
+    [-1,0,1].forEach(function(off){
+      var dt=new Date(base.getTime()+off*86400000);
+      var dstr=dt.toISOString().slice(0,10);
+      var isPast = dstr < minStr;
+      var chip=document.createElement('div');
+      chip.className='date-chip'+(off===0?' now':'')+(isPast?' disabled':'');
+      if(isPast){
+        chip.innerHTML='<div class="d">'+dt.toLocaleDateString(undefined,{weekday:'short', month:'short', day:'numeric'})+'</div><div class="p">Unavailable</div>';
+      } else {
+        var price = off===0
+          ? Math.min.apply(null, state.flights.map(function(f){return f.price;}))
+          : cheapestPriceFor(o,d,dstr);
+        chip.innerHTML='<div class="d">'+dt.toLocaleDateString(undefined,{weekday:'short', month:'short', day:'numeric'})+'</div><div class="p">from '+fmtPrice(price)+'</div>';
+        chip.addEventListener('click', function(){
+          if(state.bookingLeg==='out'){ state.departDate=dstr; if(state.returnDate && state.returnDate<dstr) state.returnDate=dstr; }
+          else { state.returnDate=dstr; }
+          loadLegResults();
+        });
+      }
+      box.appendChild(chip);
+    });
+  }
+
+  function setupResultFilters(){
+    var prices=state.flights.map(function(f){return f.price;});
+    var min=Math.min.apply(null,prices), max=Math.max.apply(null,prices);
+    var range=$('#priceRange'); range.min=min; range.max=max; range.value=max;
+    $('#priceCapLabel').textContent='up to '+fmtPrice(max);
+    range.oninput=function(){ $('#priceCapLabel').textContent='up to '+fmtPrice(range.value); renderBusList(); };
+    $('#fStops').value='any';
+    $('#fStops').onchange=renderBusList;
+    $('#sortSelect').onchange=renderBusList;
+  }
+
+  function renderBusList(){
+    var stopsFilter=$('#fStops').value;
+    var maxPrice=Number($('#priceRange').value);
+    var list=state.flights.filter(function(f){
+      if(stopsFilter==='nonstop' && f.stops!==0) return false;
+      if(stopsFilter==='onestop' && f.stops!==1) return false;
+      if(f.price>maxPrice) return false;
+      return true;
+    });
+    var sort=$('#sortSelect').value;
+    list.sort(function(a,b){
+      if(sort==='price') return a.price-b.price;
+      if(sort==='duration') return a.durationMin-b.durationMin;
+      if(sort==='depart') return a.dep-b.dep;
+      return (a.price*0.55+a.durationMin*4.5) - (b.price*0.55+b.durationMin*4.5);
+    });
+    var box=$('#busList'); box.innerHTML='';
+    if(!list.length){ box.innerHTML='<div class="no-results">No buses match these filters.</div>'; return; }
+    var cheapestId = list.slice().sort(function(a,b){return a.price-b.price;})[0].id;
+    var fastestId = list.slice().sort(function(a,b){return a.durationMin-b.durationMin;})[0].id;
+    list.forEach(function(f){
+      var stopsLabel = f.stops===0 ? 'Nonstop' : '1 stop in '+station(f.layoverCity).city+(f.layoverMin? ' · '+f.layoverMin+'m rest stop':'');
+      var ribbons='';
+      if(f.id===cheapestId) ribbons+='<span class="ribbon cheap">Cheapest</span>';
+      if(f.id===fastestId) ribbons+='<span class="ribbon fast">Fastest</span>';
+      var card=document.createElement('article'); card.className='bus-card';
+      card.innerHTML =
+        (ribbons? '<div>'+ribbons+'</div>':'')+
+        '<div class="fc-top"><span class="operator-mark">'+ICONS.bus+'</span><span>'+OPERATOR.name+' · '+f.busNo+'</span></div>'+
+        '<div class="route-line">'+
+          '<span class="rl-time">'+fmtTime(f.dep)+'</span>'+
+          '<div class="rl-mid"><span class="rl-dur">'+fmtDur(f.durationMin)+'</span>'+
+            '<div class="rl-dots"><span class="dot dot-a"></span><span class="rl-track">'+ICONS.bus+'</span><span class="dot dot-b"></span></div></div>'+
+          '<span class="rl-time">'+fmtTime(f.arr)+'</span>'+
+        '</div>'+
+        '<div class="fc-bottom"><span class="fc-sub">'+stopsLabel+'</span><div class="fc-price"><span class="price-num">'+fmtPrice(f.price)+'</span><span class="fc-tax">+'+fmtPrice(Math.round(f.price*0.10))+' est. tax</span></div></div>'+
+        '<button type="button" class="btn btn-primary btn-block" style="margin-top:10px;">Select bus</button>';
+      card.querySelector('button').addEventListener('click', function(){ chooseBus(f); });
+      box.appendChild(card);
+    });
+  }
+
+  /* ---------- fare & seats ---------- */
+  function ensureSeatMap(f){
+    if(!f.seatMap){
+      var m={};
+      for(var r=1;r<=13;r++){ ['A','B','C','D'].forEach(function(l){ m[r+l]=Math.random()<0.18; }); }
+      f.seatMap=m;
+    }
+  }
+
+  function chooseBus(f){
+    ensureSeatMap(f);
+    if(state.bookingLeg==='out'){
+      state.outFlight=f;
+      if(state.tripType==='round'){
+        state.bookingLeg='return';
+        loadLegResults();
+        return;
+      }
+    } else {
+      state.returnFlight=f;
+    }
+    goToFareSeats();
+  }
+
+  function legSummaryHtml(f,o,d,label){
+    return (label?'<div class="strip-badge">'+label+' bus</div>':'')+
+      '<div class="strip-row"><div><div class="r">'+o+' → '+d+'</div><span>'+OPERATOR.name+' '+f.busNo+' · '+fmtTime(f.dep)+'</span></div>'+
+      '<div><div class="r">'+fmtDur(f.durationMin)+'</div><span>'+(f.stops===0?'Nonstop':'1 stop')+'</span></div></div>';
+  }
+
+  function goToFareSeats(){
+    var isRound = state.tripType==='round';
+    $('#fareSummaryStrip').innerHTML = legSummaryHtml(state.outFlight, state.origin, state.destination, isRound?'Outbound':'');
+    $('#fareSummaryStripReturn').hidden = !isRound;
+    if(isRound){ $('#fareSummaryStripReturn').innerHTML = legSummaryHtml(state.returnFlight, state.destination, state.origin, 'Return'); }
+    $('#seatTitleOut').firstChild.textContent = isRound ? 'Outbound seats' : 'Pick your seat';
+    $('#returnSeatBlock').hidden = !isRound;
+
+    var fareGrid=$('#fareGrid'); fareGrid.innerHTML='';
+    var legPriceSum = state.outFlight.price + (isRound? state.returnFlight.price : 0);
+    FARES.forEach(function(t){
+      var perPerson = legPriceSum + t.add*(isRound?2:1);
+      var card=document.createElement('div'); card.className='fare-card';
+      var badge = t.id==='vip' ? '<span class="fare-badge">Best</span>' : '';
+      card.innerHTML =
+        '<div class="fare-card-main"><h4>'+t.name+badge+'</h4><div class="desc">'+t.feats.join(' · ')+'</div></div>'+
+        '<div class="fare-card-right"><div class="price-block"><div class="p">'+fmtPrice(perPerson)+'</div><span class="miles">+'+pointsFor(perPerson)+' points</span></div><span class="fare-radio"></span></div>';
+      card.addEventListener('click', function(){
+        state.fareTier=t.id;
+        $all('.fare-card').forEach(function(c){ c.classList.remove('selected'); });
+        card.classList.add('selected');
+        checkFareContinue();
+      });
+      fareGrid.appendChild(card);
+    });
+
+    var savedTraveler=loadSavedTraveler();
+    var paxForm=$('#paxForm'); paxForm.innerHTML='';
+    for(var i=0;i<state.passengers;i++){
+      var wrap=document.createElement('div');
+      var savedName = (i===0 && savedTraveler && savedTraveler.name) ? savedTraveler.name : '';
+      var savedEmail = (i===0 && savedTraveler && savedTraveler.email) ? savedTraveler.email : '';
+      wrap.innerHTML =
+        '<div class="field"><label>Passenger '+(i+1)+' full name</label><input type="text" class="pax-name" value="'+savedName.replace(/"/g,'&quot;')+'"></div>' +
+        (i===0 ? '<div class="field"><label>Email</label><input type="text" class="pax-email" value="'+savedEmail.replace(/"/g,'&quot;')+'"></div>' : '');
+      paxForm.appendChild(wrap);
+    }
+    if(savedTraveler && (savedTraveler.name || savedTraveler.email)){
+      var hintEl=paxForm.querySelector('.field');
+      if(hintEl) hintEl.insertAdjacentHTML('beforebegin', '<p class="fam-note" id="savedTravelerHint">Filled in from your saved details — edit anytime.</p>');
+    }
+    var firstNameInp=paxForm.querySelector('.pax-name');
+    var firstEmailInp=paxForm.querySelector('.pax-email');
+    function autosaveTraveler(){ if(firstNameInp) saveTraveler(firstNameInp.value.trim(), firstEmailInp?firstEmailInp.value.trim():''); }
+    $all('.pax-name, .pax-email', paxForm).forEach(function(inp){ inp.addEventListener('input', checkFareContinue); });
+    if(firstNameInp) firstNameInp.addEventListener('input', autosaveTraveler);
+    if(firstEmailInp) firstEmailInp.addEventListener('input', autosaveTraveler);
+
+    state.seatsOut=[]; state.seatsReturn=[];
+    renderSeatMapFor(state.outFlight, 'seatMap', 'seatHint', 'seatCountHint', 'seatsOut');
+    if(isRound){ renderSeatMapFor(state.returnFlight, 'seatMapReturn', 'seatHintReturn', 'seatCountHintReturn', 'seatsReturn'); }
+    checkFareContinue();
+    goTo('fare');
+  }
+
+  function renderSeatMapFor(f, mapElId, hintElId, countHintElId, stateKey){
+    var box=$('#'+mapElId); box.innerHTML='';
+    $('#'+countHintElId).textContent=' — pick '+state.passengers+' seat'+(state.passengers>1?'s':'');
+    for(var r=1;r<=13;r++){
+      var row=document.createElement('div'); row.className='seat-row';
+      var rl=document.createElement('span'); rl.className='rl mono'; rl.textContent=r; row.appendChild(rl);
+      ['A','B','C','D'].forEach(function(l, idx){
+        if(idx===2){ row.appendChild(document.createElement('span')); }
+        var id=r+l;
+        var btn=document.createElement('button');
+        btn.type='button'; btn.className='seat-btn mono'; btn.textContent=l; btn.setAttribute('data-seat', id);
+        if(f.seatMap[id]){ btn.classList.add('taken'); btn.disabled=true; }
+        btn.addEventListener('click', function(){
+          var sid=this.getAttribute('data-seat');
+          var arr=state[stateKey];
+          var i=arr.indexOf(sid);
+          if(i>-1){ arr.splice(i,1); this.classList.remove('selected'); }
+          else if(arr.length<state.passengers){ arr.push(sid); this.classList.add('selected'); }
+          $('#'+hintElId).textContent = arr.length<state.passengers ? (state.passengers-arr.length)+' more seat(s) to select' : 'Selected: '+arr.join(', ');
+          checkFareContinue();
+        });
+        row.appendChild(btn);
+      });
+      box.appendChild(row);
+    }
+    $('#'+hintElId).textContent = state.passengers+' seat(s) to select';
+  }
+
+  function checkFareContinue(){
+    var namesOk = $all('.pax-name').every(function(i){ return i.value.trim().length>1; });
+    var emailEl=$('.pax-email');
+    var emailOk = emailEl ? emailEl.value.trim().length>3 : true;
+    var seatsOk = state.seatsOut.length===state.passengers && (state.tripType!=='round' || state.seatsReturn.length===state.passengers);
+    var ok = state.fareTier && seatsOk && namesOk && emailOk;
+    $('#toPaymentBtn').disabled=!ok;
+  }
+  $('#toPaymentBtn').addEventListener('click', function(){ buildPayment(); goTo('payment'); });
+
+  /* ---------- payment ---------- */
+  function pmBadgeHtml(kind){
+    if(kind==='mastercard') return '<span class="pm-badge dual"><i class="a"></i><i class="b"></i></span>';
+    var bg = kind==='visa'?'var(--visa)': kind==='telebirr'?'var(--telebirr)':'var(--primary)';
+    var lbl = kind==='visa'?'VISA': kind==='telebirr'?'Telebirr': kind==='bank'?'Bank':'Card';
+    return '<span class="pm-badge" style="background:'+bg+'">'+lbl+'</span>';
+  }
+
+  function renderPayForm(){
+    var box=$('#payForm');
+    if(!state.paymentType){ box.hidden=true; box.innerHTML=''; checkPaymentContinue(); return; }
+    box.hidden=false;
+    if(state.paymentType==='card'){
+      box.innerHTML =
+        '<div class="field"><label>Name on card</label><input type="text" id="payCardName" placeholder="Full name"></div>'+
+        '<div class="field"><label>Card number</label><input type="text" id="payCardNumber" placeholder="0000 0000 0000 0000" maxlength="19"></div>'+
+        '<div class="row2">'+
+          '<div class="field"><label>Expiry</label><input type="text" id="payCardExpiry" placeholder="MM/YY" maxlength="5"></div>'+
+          '<div class="field"><label>CVC</label><input type="text" id="payCardCvc" placeholder="CVC" maxlength="4"></div>'+
+        '</div>';
+      $('#payCardNumber').addEventListener('input', function(){ var v=this.value.replace(/\D/g,'').slice(0,16); this.value=v.replace(/(.{4})/g,'$1 ').trim(); checkPaymentContinue(); });
+      $('#payCardExpiry').addEventListener('input', function(){ var v=this.value.replace(/\D/g,'').slice(0,4); if(v.length>=3) v=v.slice(0,2)+'/'+v.slice(2); this.value=v; checkPaymentContinue(); });
+      $all('#payCardName, #payCardCvc', box).forEach(function(inp){ inp.addEventListener('input', checkPaymentContinue); });
+    } else if(state.paymentType==='phone'){
+      box.innerHTML =
+        '<div class="field"><label>Full name</label><input type="text" id="payPhoneName" placeholder="Full name"></div>'+
+        '<div class="field"><label>Phone number</label><input type="text" id="payPhoneNumber" placeholder="09xx xxx xxx" maxlength="13"></div>'+
+        '<p class="pay-form-note">We\'ll send a payment prompt to this number to confirm the deposit.</p>';
+      $all('#payPhoneName, #payPhoneNumber', box).forEach(function(inp){ inp.addEventListener('input', checkPaymentContinue); });
+    } else if(state.paymentType==='bank'){
+      if(!state._bankRef) state._bankRef='BK-'+uid().toUpperCase();
+      box.innerHTML =
+        '<div class="field"><label>Full name</label><input type="text" id="payBankName" placeholder="Full name"></div>'+
+        '<div class="pay-ref-box"><div>Payment reference</div><b>'+state._bankRef+'</b></div>'+
+        '<p class="pay-form-note">Take this reference to any Guxo partner bank counter and pay the total shown below within 24 hours.</p>';
+      $('#payBankName').addEventListener('input', checkPaymentContinue);
+    }
+    checkPaymentContinue();
+  }
+
+  function checkPaymentContinue(){
+    var ok=false;
+    if(state.paymentType==='card'){
+      var name=$('#payCardName'), num=$('#payCardNumber'), exp=$('#payCardExpiry'), cvc=$('#payCardCvc');
+      ok = !!(name && name.value.trim().length>1 && num && num.value.replace(/\s/g,'').length>=12 && exp && exp.value.length===5 && cvc && cvc.value.length>=3);
+    } else if(state.paymentType==='phone'){
+      var pname=$('#payPhoneName'), pnum=$('#payPhoneNumber');
+      ok = !!(pname && pname.value.trim().length>1 && pnum && pnum.value.replace(/\D/g,'').length>=9);
+    } else if(state.paymentType==='bank'){
+      var bname=$('#payBankName');
+      ok = !!(bname && bname.value.trim().length>1);
+    }
+    $('#payBtn').disabled = !ok;
+  }
+
+  $all('.pay-type-tile').forEach(function(tile){
+    tile.addEventListener('click', function(){
+      state.paymentType = tile.getAttribute('data-type');
+      $all('.pay-type-tile').forEach(function(t){ t.classList.toggle('selected', t===tile); });
+      renderPayForm();
+    });
+  });
+
+  function buildPayment(){
+    var isRound = state.tripType==='round';
+    var fare=FARES.filter(function(t){return t.id===state.fareTier;})[0];
+    var names=$all('.pax-name').map(function(i){return i.value.trim();});
+    state._names=names;
+    state._fareName=fare.name;
+
+    var rows =
+      '<div class="itin-row"><span>'+(isRound?'Outbound':'Route')+'</span><span>'+state.origin+' → '+state.destination+'</span></div>'+
+      '<div class="itin-row"><span>Bus</span><span>'+OPERATOR.name+' '+state.outFlight.busNo+'</span></div>'+
+      '<div class="itin-row"><span>Departs</span><span>'+fmtTime(state.outFlight.dep)+'</span></div>'+
+      '<div class="itin-row"><span>Seats</span><span>'+state.seatsOut.join(', ')+'</span></div>';
+    if(isRound){
+      rows +=
+        '<div class="itin-row" style="margin-top:8px;"><span>Return</span><span>'+state.destination+' → '+state.origin+'</span></div>'+
+        '<div class="itin-row"><span>Bus</span><span>'+OPERATOR.name+' '+state.returnFlight.busNo+'</span></div>'+
+        '<div class="itin-row"><span>Departs</span><span>'+fmtTime(state.returnFlight.dep)+'</span></div>'+
+        '<div class="itin-row"><span>Seats</span><span>'+state.seatsReturn.join(', ')+'</span></div>';
+    }
+    $('#itinBox').innerHTML = rows;
+
+    var legPriceSum = state.outFlight.price + (isRound? state.returnFlight.price : 0);
+    var base=(legPriceSum+fare.add*(isRound?2:1))*state.passengers;
+    var tax=Math.round(base*0.10);
+    var total=base+tax;
+    state._total=total;
+    $('#priceBox').innerHTML =
+      '<div class="price-line"><span>Fare ('+fare.name+''+(isRound?', round trip':'')+') × '+state.passengers+'</span><span class="mono">'+fmtPrice(base)+'</span></div>'+
+      '<div class="price-line"><span>Taxes &amp; fees</span><span class="mono">'+fmtPrice(tax)+'</span></div>'+
+      '<div class="price-line total"><span>Total</span><span class="mono">'+fmtPrice(total)+'</span></div>';
+
+    state.paymentType=null;
+    state._bankRef=null;
+    $all('.pay-type-tile').forEach(function(t){ t.classList.remove('selected'); });
+    renderPayForm();
+  }
+
+  $('#payBtn').addEventListener('click', function(){
+    var isRound = state.tripType==='round';
+    var chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; var pnr='';
+    for(var i=0;i<6;i++) pnr+=chars[randInt(0,chars.length-1)];
+    state.pnr=pnr;
+
+    var legs=[{
+      label:isRound?'Outbound':null, origin:state.origin, destination:state.destination,
+      originCity:station(state.origin).city, destCity:station(state.destination).city,
+      dep:state.outFlight.dep, arr:state.outFlight.arr, busNo:state.outFlight.busNo, seats:state.seatsOut.slice()
+    }];
+    if(isRound){
+      legs.push({
+        label:'Return', origin:state.destination, destination:state.origin,
+        originCity:station(state.destination).city, destCity:station(state.origin).city,
+        dep:state.returnFlight.dep, arr:state.returnFlight.arr, busNo:state.returnFlight.busNo, seats:state.seatsReturn.slice()
+      });
+    }
+
+    var payKind, payLabel, paySub;
+    if(state.paymentType==='card'){
+      var cardNum=$('#payCardNumber').value.replace(/\s/g,'');
+      payKind = cardNum.charAt(0)==='4' ? 'visa' : cardNum.charAt(0)==='5' ? 'mastercard' : 'debit';
+      payLabel='Card'; paySub='•••• '+cardNum.slice(-4);
+    } else if(state.paymentType==='phone'){
+      payKind='telebirr'; payLabel='Mobile Banking'; paySub=$('#payPhoneNumber').value;
+    } else if(state.paymentType==='bank'){
+      payKind='bank'; payLabel='Bank counter'; paySub=state._bankRef;
+    }
+
+    var trip={
+      id:'TR-'+uid(), tripType:state.tripType, legs:legs,
+      fareTier:state.fareTier, fareName:state._fareName,
+      names:state._names.slice(), price:state._total, pnr:pnr, checkedIn:false, cancelled:false,
+      paymentKind:payKind, paymentLabel:payLabel, paymentSub:paySub, bookedAt:new Date()
+    };
+    state.trips.unshift(trip);
+
+    var bp = legs.map(function(lg){
+      return (lg.label?'<div class="bp-row" style="margin-top:8px;"><span><b>'+lg.label+'</b></span><span></span></div>':'')+
+        '<div class="bp-row"><span>Route</span><span>'+lg.origin+' → '+lg.destination+'</span></div>'+
+        '<div class="bp-row"><span>Bus</span><span>'+OPERATOR.name+' '+lg.busNo+'</span></div>'+
+        '<div class="bp-row"><span>Departs</span><span>'+fmtTime(lg.dep)+'</span></div>'+
+        '<div class="bp-row"><span>Seats</span><span>'+lg.seats.join(', ')+'</span></div>';
+    }).join('');
+    bp += '<div class="bp-row" style="margin-top:8px;"><span>Fare</span><span>'+state._fareName+'</span></div>'+
+      '<div class="bp-row"><span>Passenger'+(state._names.length>1?'s':'')+'</span><span>'+state._names.join(', ')+'</span></div>'+
+      '<div class="bp-row"><span>Total paid</span><span>'+fmtPrice(state._total)+'</span></div>'+
+      '<div class="bp-row"><span>Guxo Points earned</span><span>+'+pointsFor(state._total)+'</span></div>';
+    $('#bpBox').innerHTML=bp;
+    $('#pnrCode').textContent=pnr;
+
+    navigateWithLoading(function(){
+      stack=[{screen:'trips', tab:'trips'}];
+      cur={screen:'confirm', tab:null};
+      render();
+    });
+  });
+
+  $('#doneBtn').addEventListener('click', function(){ showRoot('trips'); });
+  $('#bookAnotherBtn').addEventListener('click', function(){ showRoot('home'); });
+
+  /* ---------- trips / check-in ---------- */
+  function renderTrips(){
+    var box=$('#tripsBox');
+    if(!state.trips.length){
+      box.innerHTML='<div class="empty-state"><div class="em">'+ICONS.empty+'</div><p>No trips yet — book a bus to see it here.</p><button class="btn btn-primary" id="tripsSearchBtn">Search buses</button></div>';
+      $('#tripsSearchBtn').addEventListener('click', function(){ showRoot('home'); });
+      return;
+    }
+    box.innerHTML='';
+    state.trips.forEach(function(t){
+      var tags=[]; if(t.fareTier!=='standard') tags.push('Free baggage'); if(t.fareTier==='vip') tags.push('Flexible changes');
+      if(t.tripType==='round') tags.unshift('Round trip');
+      var card=document.createElement('div'); card.className='trip-card'+(t.cancelled?' is-cancelled':'');
+      var legsHtml = t.legs.map(function(lg){
+        return (lg.label ? '<div class="trip-leg-label">'+lg.label+'</div>' : '') +
+          '<div class="booked-meta">Booked '+fmtDate(t.bookedAt)+' · '+fmtTime(t.bookedAt)+'</div>'+
+          '<div class="leg-codes"><span>'+lg.origin+'</span><span>'+lg.destination+'</span></div>'+
+          '<div class="leg-city"><span>'+lg.originCity+'</span><span>'+lg.destCity+'</span></div>'+
+          '<div class="rl-dots" style="margin-top:8px;"><span class="dot dot-a"></span><span class="rl-track">'+ICONS.bus+'</span><span class="dot dot-b"></span></div>'+
+          '<div class="ci-dates"><span>'+fmtDate(lg.dep)+'</span><span>'+fmtDate(lg.arr)+'</span></div>'+
+          '<div class="ci-times"><span>'+fmtTime(lg.dep)+'</span><span>'+fmtTime(lg.arr)+'</span></div>';
+      }).join('<div class="trip-leg-divider"></div>');
+      var actionsHtml = t.cancelled
+        ? '<button type="button" class="btn btn-tint btn-block rebook-btn">'+ICONS.refresh+'<span>Rebook this trip</span></button>'
+        : '<div class="trip-actions">'+
+            '<button type="button" class="btn btn-tint rebook-btn">'+ICONS.refresh+'<span>Rebook</span></button>'+
+            '<button type="button" class="btn btn-danger cancel-trip-btn">'+ICONS.cancelX+'<span>Cancel trip</span></button>'+
+          '</div>';
+      card.innerHTML =
+        '<div class="trip-operator"><span class="operator-mark" style="width:20px;height:20px;font-size:9px;">'+ICONS.bus+'</span>'+OPERATOR.name+'</div>'+
+        (t.cancelled ? '<span class="cancelled-badge">Cancelled</span>' : '')+
+        legsHtml+
+        '<div class="tags-row">'+tags.map(function(x){return '<span class="tag-pill">'+x+'</span>';}).join('')+'</div>'+
+        actionsHtml;
+      card.querySelector('.rebook-btn').addEventListener('click', function(){
+        var out=t.legs[0];
+        var today=new Date().toISOString().slice(0,10);
+        if(t.tripType==='round' && t.legs[1]){
+          var ret=t.legs[1];
+          var tripDays=Math.max(1, Math.round((new Date(ret.dep)-new Date(out.dep))/86400000));
+          var departDate=new Date(Date.now()+7*86400000).toISOString().slice(0,10);
+          var retDate=new Date(Date.now()+(7+tripDays)*86400000).toISOString().slice(0,10);
+          performSearch(out.origin, out.destination, departDate, t.names.length, 'round', retDate);
+        } else {
+          performSearch(out.origin, out.destination, today, t.names.length, 'one', null);
+        }
+      });
+      var cancelBtn=card.querySelector('.cancel-trip-btn');
+      if(cancelBtn){ cancelBtn.addEventListener('click', function(){ openCancelModal(t.id); }); }
+      card.addEventListener('click', function(e){
+        if(e.target.closest('button')) return;
+        renderTripDetail(t.id);
+      });
+      box.appendChild(card);
+    });
+  }
+
+  /* ---------- trip detail / receipt ---------- */
+  function renderTripDetail(tripId){
+    var t=state.trips.filter(function(x){return x.id===tripId;})[0];
+    if(!t) return;
+    var isCancelled = !!t.cancelled;
+
+    $('#tripDetailTop').className='bp-top'+(isCancelled?' cancelled':'');
+    $('#tripDetailIcon').innerHTML = isCancelled
+      ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>'
+      : '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    $('#tripDetailHeading').textContent = isCancelled ? 'Trip cancelled' : "You're booked";
+    $('#tripDetailSub').textContent = isCancelled ? 'This booking is no longer active.' : 'Saved to My Trips on this device.';
+
+    var bp = t.legs.map(function(lg){
+      return (lg.label?'<div class="bp-row" style="margin-top:8px;"><span><b>'+lg.label+'</b></span><span></span></div>':'')+
+        '<div class="bp-row"><span>Route</span><span>'+lg.origin+' → '+lg.destination+'</span></div>'+
+        '<div class="bp-row"><span>Bus</span><span>'+OPERATOR.name+' '+lg.busNo+'</span></div>'+
+        '<div class="bp-row"><span>Departs</span><span>'+fmtDate(lg.dep)+' · '+fmtTime(lg.dep)+'</span></div>'+
+        '<div class="bp-row"><span>Seats</span><span>'+lg.seats.join(', ')+'</span></div>';
+    }).join('');
+    bp += '<div class="bp-row" style="margin-top:8px;"><span>Booked</span><span>'+fmtDate(t.bookedAt)+' · '+fmtTime(t.bookedAt)+'</span></div>'+
+      '<div class="bp-row"><span>Fare</span><span>'+t.fareName+'</span></div>'+
+      '<div class="bp-row"><span>Passenger'+(t.names.length>1?'s':'')+'</span><span>'+t.names.join(', ')+'</span></div>'+
+      '<div class="bp-row"><span>Total paid</span><span>'+fmtPrice(t.price)+'</span></div>'+
+      '<div class="bp-row"><span>Guxo Points earned</span><span>'+(isCancelled?'—':'+'+pointsFor(t.price))+'</span></div>';
+    $('#tripDetailBox').innerHTML=bp;
+    $('#tripDetailPnr').textContent=t.pnr;
+
+    $('#tripDetailPayment').innerHTML =
+      '<div class="itin-row"><span>Payment method</span><span class="pm-inline">'+(t.paymentLabel?pmBadgeHtml(t.paymentKind)+t.paymentLabel+' · '+t.paymentSub:'—')+'</span></div>'+
+      '<div class="itin-row"><span>Amount charged</span><span>'+fmtPrice(t.price)+'</span></div>'+
+      '<div class="itin-row"><span>Status</span><span>'+(isCancelled?'Cancelled':'Confirmed')+'</span></div>';
+
+    goTo('trip-detail');
+  }
+
+  /* ---------- cancel trip modal ---------- */
+  var cancelTargetId=null;
+  function openCancelModal(tripId){
+    var t=state.trips.filter(function(x){return x.id===tripId;})[0];
+    if(!t) return;
+    cancelTargetId=tripId;
+    var out=t.legs[0];
+    $('#cancelModalBody').textContent = 'Your '+out.origin+' → '+out.destination+' booking (PNR '+t.pnr+') will be cancelled and removed from check-in. This can\'t be undone.';
+    $('#cancelModal').hidden=false;
+  }
+  function closeCancelModal(){ cancelTargetId=null; $('#cancelModal').hidden=true; }
+  $('#cancelModalKeep').addEventListener('click', closeCancelModal);
+  $('#cancelModal').addEventListener('click', function(e){ if(e.target===this) closeCancelModal(); });
+  $('#cancelModalConfirm').addEventListener('click', function(){
+    var t=state.trips.filter(function(x){return x.id===cancelTargetId;})[0];
+    if(t){ t.cancelled=true; }
+    closeCancelModal();
+    renderTrips();
+  });
+
+  function renderCheckin(){
+    var box=$('#checkinBox');
+    var trips=state.trips.filter(function(t){ return !t.cancelled; });
+    if(!trips.length){
+      box.innerHTML='<div class="empty-state"><div class="em">'+ICONS.empty+'</div><p>No upcoming tickets yet.</p><button class="btn btn-primary" id="ciSearchBtn">Search buses</button></div>';
+      $('#ciSearchBtn').addEventListener('click', function(){ showRoot('home'); });
+      return;
+    }
+    box.innerHTML='';
+    trips.forEach(function(t){
+      var card=document.createElement('div'); card.className='trip-card';
+      var legsHtml = t.legs.map(function(lg){
+        var oa=station(lg.origin), da=station(lg.destination);
+        return (lg.label ? '<div class="trip-leg-label">'+lg.label+'</div>' : '') +
+          '<div class="booked-meta">Booked '+fmtDate(t.bookedAt)+' · '+fmtTime(t.bookedAt)+'</div>'+
+          '<div class="leg-codes"><span>'+lg.origin+'</span><span>'+lg.destination+'</span></div>'+
+          '<div class="leg-city"><span>'+oa.name+'</span><span>'+da.name+'</span></div>'+
+          '<div class="rl-dots" style="margin-top:8px;"><span class="dot dot-a"></span><span class="rl-track">'+ICONS.bus+'</span><span class="dot dot-b"></span></div>'+
+          '<div class="ci-dates"><span>'+fmtDate(lg.dep)+'</span><span>'+fmtDate(lg.arr)+'</span></div>'+
+          '<div class="ci-times"><span>'+fmtTime(lg.dep)+'</span><span>'+fmtTime(lg.arr)+'</span></div>';
+      }).join('<div class="trip-leg-divider"></div>');
+      card.innerHTML =
+        legsHtml+
+        (t.checkedIn ? '<span class="checkedin-badge">Ticket ready</span>' : '')+
+        '<button type="button" class="btn btn-primary btn-block" style="margin-top:12px;">'+(t.checkedIn?'View e-ticket':'Get Ticket')+'</button>';
+      var btn=card.querySelector('button');
+      btn.addEventListener('click', function(){ t.checkedIn=true; openBoardingPass(t.id); });
+      box.appendChild(card);
+    });
+  }
+
+  /* ---------- boarding pass ---------- */
+  function ensureBoardingInfo(t){
+    t.legs.forEach(function(lg){
+      if(!lg.gate) lg.gate = pick(['A','B','C','D'])+randInt(1,20);
+      if(!lg.boardingTime) lg.boardingTime = new Date(lg.dep.getTime() - 40*60000);
+    });
+  }
+  function strHash(str){
+    var h=0;
+    for(var i=0;i<str.length;i++){ h=(h<<5)-h+str.charCodeAt(i); h|=0; }
+    return h>>>0;
+  }
+  function mulberry32(seed){
+    return function(){
+      seed = seed + 0x6D2B79F5 | 0;
+      var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function qrLikeSvg(seedStr, size){
+    size = size || 132;
+    var n=21, cell=size/n;
+    var rand=mulberry32(strHash(seedStr));
+    var rects='';
+    for(var r=0;r<n;r++){
+      for(var c=0;c<n;c++){
+        var inFinder = (r<7 && c<7) || (r<7 && c>=n-7) || (r>=n-7 && c<7);
+        if(inFinder) continue;
+        if(rand()<0.5) rects += '<rect x="'+(c*cell)+'" y="'+(r*cell)+'" width="'+cell+'" height="'+cell+'" fill="currentColor"/>';
+      }
+    }
+    function finder(rowOff, colOff){
+      var x=colOff*cell, y=rowOff*cell;
+      return '<rect x="'+x+'" y="'+y+'" width="'+(7*cell)+'" height="'+(7*cell)+'" fill="currentColor"/>'+
+        '<rect x="'+(x+cell)+'" y="'+(y+cell)+'" width="'+(5*cell)+'" height="'+(5*cell)+'" fill="var(--surface)"/>'+
+        '<rect x="'+(x+2*cell)+'" y="'+(y+2*cell)+'" width="'+(3*cell)+'" height="'+(3*cell)+'" fill="currentColor"/>';
+    }
+    return '<svg viewBox="0 0 '+size+' '+size+'" width="'+size+'" height="'+size+'" role="img" aria-label="E-ticket QR code">'+
+      '<rect x="0" y="0" width="'+size+'" height="'+size+'" fill="var(--surface)"/>'+
+      rects+finder(0,0)+finder(0,n-7)+finder(n-7,0)+
+    '</svg>';
+  }
+  function openBoardingPass(tripId){
+    var t=state.trips.filter(function(x){return x.id===tripId;})[0];
+    if(!t) return;
+    ensureBoardingInfo(t);
+    $('#boardingBox').innerHTML = t.legs.map(function(lg){
+      return '<div class="boarding-pass">'+
+        '<div class="bp-top">'+
+          (lg.label ? '<div class="bp-leg-tag">'+lg.label+'</div>' : '')+
+          '<h2>'+lg.origin+' → '+lg.destination+'</h2>'+
+          '<p>'+OPERATOR.name+' '+lg.busNo+' · '+fmtDate(lg.dep)+'</p>'+
+        '</div>'+
+        '<div class="bp-perf"></div>'+
+        '<div class="bp-body">'+
+          '<div class="bp-row"><span>Passenger'+(t.names.length>1?'s':'')+'</span><span>'+t.names.join(', ')+'</span></div>'+
+          '<div class="bp-row"><span>Seat'+(lg.seats.length>1?'s':'')+'</span><span>'+lg.seats.join(', ')+'</span></div>'+
+          '<div class="bp-row"><span>Boarding time</span><span>'+fmtTime(lg.boardingTime)+'</span></div>'+
+          '<div class="bp-row"><span>Boarding bay</span><span>'+lg.gate+'</span></div>'+
+          '<div class="bp-row"><span>Departs</span><span>'+fmtTime(lg.dep)+'</span></div>'+
+        '</div>'+
+        '<div class="bp-pnr"><div>Boarding reference</div><b>'+t.pnr+'</b></div>'+
+        '<div class="bp-qr">'+qrLikeSvg(t.pnr+'-'+lg.busNo, 132)+'</div>'+
+      '</div>';
+    }).join('');
+    goTo('boarding');
+  }
+
+  /* ---------- notifications ---------- */
+  function renderNotifications(){
+    var box=$('#notifBox');
+    var items=[];
+    state.trips.forEach(function(t){
+      var out=t.legs[0];
+      var routeTxt = t.tripType==='round' && t.legs[1] ? (out.origin+' ⇄ '+out.destination) : (out.origin+' → '+out.destination);
+      var flightTxt = t.legs.map(function(lg){ return lg.busNo; }).join(' / ');
+      items.push({icon:ICONS.bus, unread:true, t:'Booking confirmed', d:OPERATOR.name+' '+flightTxt+' · '+routeTxt+' · PNR '+t.pnr, ts:'Just now'});
+      if(t.checkedIn) items.push({icon:ICONS.pin, unread:false, t:'Ticket ready', d:'Your e-ticket is ready for '+routeTxt+'.', ts:'Just now'});
+      if(t.cancelled) items.push({icon:ICONS.pin, unread:true, t:'Trip cancelled', d:'Your booking '+routeTxt+' · PNR '+t.pnr+' has been cancelled.', ts:'Just now'});
+    });
+    items.push({icon:ICONS.pin, unread:false, t:'Price drop', d:'Fares on ADD → BDR are down — now from ETB 480.', ts:'2h ago'});
+    items.push({icon:ICONS.bell, unread:false, t:'Boarding reminder', d:'Boarding opens 30 minutes before departure at the station.', ts:'1d ago'});
+    items.push({icon:ICONS.bus, unread:false, t:'Welcome to Guxo', d:'Book, manage, and track your bus tickets — all in one place.', ts:'3d ago'});
+
+    if(!items.length){ box.innerHTML='<div class="empty-state"><div class="em">'+ICONS.empty+'</div><p>No notifications yet.</p></div>'; return; }
+    box.innerHTML='';
+    items.forEach(function(it){
+      var row=document.createElement('div'); row.className='notif-item'+(it.unread?' unread':'');
+      row.innerHTML='<span class="notif-icon">'+it.icon+'</span><div class="notif-mid"><div class="t">'+it.t+'</div><div class="d">'+it.d+'</div><div class="ts">'+it.ts+'</div></div>'+(it.unread?'<span class="notif-dot"></span>':'');
+      box.appendChild(row);
+    });
+  }
+
+  /* ---------- profile ---------- */
+  function renderProfile(){
+    var box=$('#profileBox');
+    var u = state.currentUser || {name:'Guest', email:''};
+    var totalMiles=state.trips.filter(function(t){ return !t.cancelled; }).reduce(function(sum,t){ return sum + Number(pointsFor(t.price).replace(/,/g,'')); }, 0);
+    box.innerHTML =
+      '<div class="profile-head">'+
+        '<div class="profile-avatar">'+initialsFor(u.name)+'</div>'+
+        '<div class="profile-name">'+u.name+'</div>'+
+        '<div class="profile-sub">'+u.email+'</div>'+
+      '</div>'+
+      '<div class="miles-card"><div><div class="m">'+totalMiles.toLocaleString()+'</div><span>Guxo Points balance</span></div>'+ICONS.bus+'</div>'+
+      '<div class="profile-row"><span>Saved passengers</span><span class="chev">›</span></div>'+
+      '<div class="profile-row"><span>Payment methods</span><span class="chev">›</span></div>'+
+      '<div class="profile-row"><span>Notification preferences</span><span class="chev">›</span></div>'+
+      '<div class="profile-row"><span>Help &amp; support</span><span class="chev">›</span></div>'+
+      '<div class="profile-row" id="logoutRow" style="color:var(--bad);"><span>Log out</span><span class="chev">›</span></div>';
+    var logoutRow=$('#logoutRow');
+    if(logoutRow){
+      logoutRow.addEventListener('click', function(){
+        state.currentUser=null;
+        navigateWithLoading(function(){
+          stack=[]; cur={screen:'login', tab:null}; render();
+          var acc=loadAccount(); var liEmail=$('#liEmail');
+          if(liEmail) liEmail.value = acc ? acc.email : '';
+        });
+      });
+    }
+  }
+
+  /* ---------- boot: splash, then gate the app behind sign up / log in ---------- */
+  var SPLASH_DELAY = REDUCE_MOTION ? 0 : 1400;
+  (function boot(){
+    var existingAccount=loadAccount();
+    var nextScreen;
+    if(existingAccount){
+      var liEmail=$('#liEmail');
+      if(liEmail) liEmail.value=existingAccount.email;
+      nextScreen='login';
+    } else {
+      nextScreen='signup';
+    }
+    cur={screen:'splash', tab:null};
+    render();
+    setTimeout(function(){
+      cur={screen:nextScreen, tab:null};
+      render();
+    }, SPLASH_DELAY);
+  })();
+})();
+</script>
+
+
+</body></html>
