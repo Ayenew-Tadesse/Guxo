@@ -1,6 +1,6 @@
 # Guxo
 
-A UI/UX portfolio prototype: a full-featured intercity bus booking mobile app for Ethiopia, built as a single self-contained HTML file (vanilla JS, no frameworks). Built as a structural sibling to [Hid-Go](https://github.com/Ayenew-Tadesse/hid-go), retheming the same interaction patterns around a fictional bus operator, "Guxo Line."
+A UI/UX portfolio prototype: a full-featured intercity bus booking mobile app for Ethiopia, built as a single self-contained HTML file (vanilla JS, no frameworks). Built as a structural sibling to [Guxo Flights](https://github.com/Ayenew-Tadesse/hid-go), retheming the same interaction patterns around a fictional bus operator, "Guxo Line."
 
 ## Features
 
@@ -19,7 +19,7 @@ Plain HTML, CSS, and JavaScript — no build step, no dependencies. Open `index.
 
 ## Related
 
-Part of a growing family of travel-booking prototypes, alongside [Hid-Go](https://github.com/Ayenew-Tadesse/hid-go) (domestic flight booking) — more apps to come.
+Part of a growing family of travel-booking prototypes, alongside [Guxo Flights](https://github.com/Ayenew-Tadesse/hid-go) (domestic flight booking) — more apps to come.
 
 ---
 
