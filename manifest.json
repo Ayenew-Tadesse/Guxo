@@ -1,0 +1,37 @@
+{
+  "app": "Guxo",
+  "device": "phone",
+  "size": "390x844",
+  "taken_at": "2026-10-04T00:50:51.436Z",
+  "commit": "fd46293b267b8bd6b233d7ac80a5e3aea3bf60af",
+  "shots": [
+    {
+      "file": "phone/home.jpg",
+      "label": "Search"
+    },
+    {
+      "file": "phone/results.jpg",
+      "label": "Results"
+    },
+    {
+      "file": "phone/fare.jpg",
+      "label": "Choose a fare"
+    },
+    {
+      "file": "phone/seat.jpg",
+      "label": "Pick a seat"
+    },
+    {
+      "file": "phone/payment.jpg",
+      "label": "Pay by phone"
+    },
+    {
+      "file": "phone/confirm.jpg",
+      "label": "You're booked"
+    },
+    {
+      "file": "phone/ticket.jpg",
+      "label": "E-ticket"
+    }
+  ]
+}
